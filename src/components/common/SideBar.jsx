@@ -9,6 +9,12 @@ import PropTypes from "prop-types";
 
 const SideBar = ({ onPageChange  }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handlePageChange = (page) => {
+    onPageChange(page); // I-trigger ang parent function para magbago ang page
+    setIsOpen(false);   // Isara ang sidebar
+  };
+
   return (
     <>
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
@@ -20,8 +26,8 @@ const SideBar = ({ onPageChange  }) => {
             </div>
           </header><hr/>
           <nav className={isOpen ? "" : "notxt"}>
-          <button onClick={() => onPageChange("dashboard")}>< LuLayoutDashboard/><span>Dashboard</span></button>
-          <button onClick={() => onPageChange("patients")}><CgProfile/> <span>Patients</span></button>
+          <button onClick={() => handlePageChange("dashboard")}>< LuLayoutDashboard/><span>Dashboard</span></button>
+          <button onClick={() => handlePageChange("patients")}><CgProfile/> <span>Patients</span></button>
           <button className="logout"><BiSolidLogOut/> <span>Logout</span></button>
           </nav>
         </div>
