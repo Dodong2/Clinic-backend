@@ -7,12 +7,12 @@ import './assets/App.css'
 function App() {
 
 //Pages
-  const DashboardPage = lazy(() => import('./Pages/dashboardPage'))
+  const DashboardPage = lazy(() => import('./Pages/DashboardPage.jsx'))
 
   return (
     <>
     <Router>
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
         {/* <Route path="/" element={<User/>}/> */}

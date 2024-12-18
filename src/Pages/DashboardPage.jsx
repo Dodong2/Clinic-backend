@@ -4,7 +4,7 @@ import NavBar from "../components/common/NavBar"
 import Dashboard from "../components/Dashboard"
 import Patients from "../components/Patients"
 
-const DashBoardPage = () => <Dashboard/>
+const GraphsPage = () => <Dashboard/>
 const PatientsPage = () => <Patients/>
 
 const DashboardPage = () => {
@@ -16,10 +16,10 @@ const DashboardPage = () => {
 
   return (
     <>
-    <NavBar/>
+    <NavBar activePage={activePage} />
     <SideBar onPageChange={handlePageChange}/>
       <div className="pages">
-      {activePage === "dashboard" && <DashBoardPage />}
+      {activePage === "dashboard" && <GraphsPage />}
         {activePage === "patients" && <PatientsPage />}
       </div>
     </>

@@ -1,12 +1,17 @@
+import PropTypes from "prop-types"
 
-const NavBar = () => {
+const NavBar = ({ activePage }) => {
   return (
     <>
       <div className='nav-bar'>
-        <h2>Dashboard</h2>
+        <h2>{activePage}</h2>
       </div><hr/>
     </>
   )
 }
+
+NavBar.propTypes = {
+  activePage: PropTypes.string.isRequired,
+};
 
 export default NavBar
