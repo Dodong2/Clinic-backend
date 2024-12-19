@@ -38,11 +38,20 @@ body {
     --NavColor: #C4E8EF;
     --color-black: #232323;
     --color-grey: rgb(106, 105, 105);
+    --table-container-color: #215064;
+    --color-red: rgba(194, 15, 15, 0.63);
+    --color-second-red: rgba(255, 15, 15, 0.694);
+    --color-maroon: #B42424;
+    --NavText-color: #215064;
+    --color-green: #24B472;
+    --color-blue: #2196F3;
+    --color-yellow: #FF9800;
 }
 
 /*--------------------(  Common CSS  )--------------------*/
 /* navbar */
 .nav-bar {
+    /* position: fixed; */
     font-family: poppins-bold;
     font-size: clamp(1.1rem, 5vw, 1.1rem);
     width: 100%;
@@ -51,12 +60,12 @@ body {
 }
 .nav-bar h2 {
     margin-left: 50px;
-    color: var(--color-black);
+    color: var(--NavText-color);
 }
 
 /* sidebar */
 .sidebar {
-    position: absolute;
+    position: fixed;
     overflow: hidden;
     top: 0;
     left: 0;
@@ -169,7 +178,8 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 10px;
+    /* margin-top: 90px; */
+    z-index: -1;
 }
 
 .graph-layer1, .graph-layer2 {
@@ -202,11 +212,360 @@ body {
     border-radius: 20px;
 }
 
+/*--------------------(  Paients  )--------------------*/
+.patient {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 3.5em;
+    /* margin-top: 85px; */
+    padding: 10px;
+    /* height: 100svh; */
+}
 
+/* patient layer 2 */
+.patient-layer1 {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+}
 
+.number-of-patients, .gender-count {
+    background-color: var(--NavColor);
+    padding: 20px;
+    border-radius: 20px;
+}
 
+.number-of-patients h3 {
+    font-family: poppins-light;
+    font-size: clamp(1.1rem, 5vw, 1.1rem);
+    font-weight: 600;
+}
 
+.number-of-patients p {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+}
 
+.gender-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+
+.gender-count .gender-count-male h3, .gender-count .gender-count-female h3 {
+    font-family: poppins-light;
+    font-size: clamp(1.1rem, 5vw, 1.1rem);
+    font-weight: 600;
+}
+
+.gender-count .gender-count-male p, .gender-count .gender-count-female p {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+}
+
+/* patient layer 2 */
+.patient-layer2 {
+    background: var(--table-container-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.patient-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-patient {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.patient-header button {
+    background-color: var(--color-white);
+    font-family: poppins-bold;
+    font-size: clamp(1rem, 5vw, 1rem);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-black);
+}
+
+.patient-header button:hover {
+    transition: all .3s ease;
+    background-color: var(--NavColor);
+}
+
+.patient-header button:active {
+    transform: scale(0.90);
+}
+
+.search-bar {
+  display: inline-block;
+  position: relative;
+  background-color: var(--color-white);
+  border-radius: 20px;
+  
+}
+
+.search-bar input {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+    background-color: var(--color-white);
+    border: none;
+    font-family: poppins-light;
+}
+  
+.search-bar input:focus {
+    width: 300px; 
+    border-color: var(--NavColor);
+    outline: none;
+}
+
+.search-bar .icon {   
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+/* patient tables */
+.patient-tables {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    font-family: poppins-bold;
+    color: var(--color-black);
+}
+
+th, tr, td {
+    /* border: 1px solid var(--table-container-color); */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+tr, td {
+    font-family: poppins-light;
+    padding: 3px;
+    transition: all .2s ease-out;
+    text-align: left;
+    font-size: clamp(0.3rem, 5vw, 0.8rem);
+}
+
+th:nth-child(8),td:nth-child(8) {
+ display: flex;
+ align-items: center;
+ justify-content: space-evenly;
+}
+
+td:nth-child(8) button {
+    padding: 2px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    border: none;
+    background-color: var(--table-container-color);
+    border-radius: 2px;
+}
+
+td:nth-child(8) button:hover {
+    transition: all .3s ease;
+    background-color: var(--color-second-red);
+}
+
+td:nth-child(8) button:active {
+    transform: scale(0.85);
+}
+
+tr:hover {
+    background-color: var(--NavColor);
+}
+
+td:hover {
+    color: var(--color-black);
+}
+
+/*--------------------(  Modal  )--------------------*/
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-txt {
+     text-align: center;
+}
+
+.modal-txt .icon2 {
+    font-size: clamp(1.1rem, 5vw, 4rem);
+}
+
+.modal-txt .icon3 {
+    font-size: clamp(1.1rem, 5vw, 4rem);
+    color: var(--color-maroon);
+}
+.modal-txt h3 {
+    font-family: poppins-bold;
+}
+
+.modal-txt p {
+    font-family: poppins-light;
+    font-weight: 600;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-red);
+    transition: all .2s ease;
+  }
+
+  .modal-close:hover {
+    color: var(--color-second-red);
+  }
+
+  .modal-close:active {
+    transform: scale(0.85);
+}
+
+.modal-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.modal-btn2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal-btn3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* modal button 1 */
+.modal-btn button {
+    font-family: poppins-bold;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.modal-btn button:nth-child(1):hover, .modal-btn button:nth-child(2):hover, .modal-btn button:nth-child(3):hover {
+    color: var(--color-black);
+    transition: all .3s ease;
+    background-color: var(--NavColor);
+}
+
+.modal-btn button:active, .modal-btn2 button:active, .modal-btn3 button:active {
+    transform: scale(0.85);
+}
+
+.modal-btn button:nth-child(1) {
+    background-color: var(--color-green) ;
+}
+.modal-btn button:nth-child(2) {
+    background-color: var(--color-blue) ;
+}
+.modal-btn button:nth-child(3) {
+    background-color: var(--color-yellow) ;
+}
+
+/* modal button 2 */
+.modal-btn2 button {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.modal-btn2 button:nth-child(1) {
+    background-color: var(--color-grey) ;
+}
+
+.modal-btn2 button:nth-child(2) {
+    background-color: var(--color-maroon) ;
+}
+
+.modal-btn2 button:nth-child(1):hover, .modal-btn2 button:nth-child(2):hover {
+    transition: all .3s ease;
+    background-color: var(--color-second-red);
+}
+
+/* modal button 3 */
+.modal-btn3 button {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1rem);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.modal-btn3 button:nth-child(1) {
+    background-color: var(--color-green) ;
+}
+
+.modal-btn3 button:nth-child(2) {
+    background-color: var(--color-blue) ;
+}
+
+.modal-btn3 button:nth-child(1):hover, .modal-btn3 button:nth-child(2):hover {
+    transition: all .3s ease;
+    background-color: var(--NavColor);
+    color: var(--color-black);
+}
 
 
 

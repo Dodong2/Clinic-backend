@@ -7,7 +7,7 @@ import './assets/App.css'
 function App() {
 
 //Pages
-  const DashboardPage = lazy(() => import('./Pages/DashboardPage.jsx'))
+  const DashboardPage = lazy(() => import('./pages/MainDashboard.jsx'))
 
   return (
     <>

@@ -1,10 +1,13 @@
+/****** react library ******/
 import { useState } from "react";
+import PropTypes from "prop-types";
+/****** react icons ******/
 import { IoMenu, IoClose } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { BiSolidLogOut } from "react-icons/bi";
+/****** assets ******/
 import clinic from '../../assets/images/clinic.svg'
-import PropTypes from "prop-types";
 
 
 const SideBar = ({ onPageChange  }) => {
@@ -19,12 +22,14 @@ const SideBar = ({ onPageChange  }) => {
     <>
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="inner">
+        {/* sidebar header */}
           <header>
             <button type="button" className="sidebar-burger"onClick={() => setIsOpen(!isOpen)}><span className="icon">{isOpen ? <IoClose /> : <IoMenu />}</span></button>
             <div className="sidebar-img">
             <img src={clinic} alt="clinic"/>
             </div>
           </header><hr/>
+          {/* sidebar nav button pages */}
           <nav className={isOpen ? "" : "notxt"}>
           <button onClick={() => handlePageChange("dashboard")}>< LuLayoutDashboard/><span>Dashboard</span></button>
           <button onClick={() => handlePageChange("patients")}><CgProfile/> <span>Patients</span></button>

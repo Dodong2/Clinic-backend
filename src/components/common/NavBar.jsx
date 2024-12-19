@@ -1,3 +1,4 @@
+/****** react library ******/
 import PropTypes from "prop-types"
 
 const NavBar = ({ activePage }) => {
