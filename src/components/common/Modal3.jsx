@@ -9,7 +9,7 @@ const Modal3 = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-    {/* content */}
+      {/* content */}
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
       <div className="modal-txt">
       <CgProfile className="icon2"/>

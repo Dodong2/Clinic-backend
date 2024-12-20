@@ -7,7 +7,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { BiSolidLogOut } from "react-icons/bi";
 /****** assets ******/
-import clinic from '../../assets/images/clinic.svg'
+import clinic from '../../assets/images/LSPUlogo.png'
 
 
 const SideBar = ({ onPageChange  }) => {
@@ -25,10 +25,15 @@ const SideBar = ({ onPageChange  }) => {
         {/* sidebar header */}
           <header>
             <button type="button" className="sidebar-burger"onClick={() => setIsOpen(!isOpen)}><span className="icon">{isOpen ? <IoClose /> : <IoMenu />}</span></button>
-            <div className="sidebar-img">
-            <img src={clinic} alt="clinic"/>
+            <div className="sidebar-title-container">
+            <div className="sidebar-title">
+            <h2>LSPU Clinic</h2>
+            <div className='sidebar-img'>
+            <img src={clinic} alt="clinic" />
             </div>
-          </header><hr/>
+            </div>
+            </div>
+          </header>
           {/* sidebar nav button pages */}
           <nav className={isOpen ? "" : "notxt"}>
           <button onClick={() => handlePageChange("dashboard")}>< LuLayoutDashboard/><span>Dashboard</span></button>

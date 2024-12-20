@@ -7,7 +7,10 @@ import './assets/App.css'
 function App() {
 
 //Pages
+//admin dashboard page
   const DashboardPage = lazy(() => import('./pages/MainDashboard.jsx'))
+//Student patient page
+  const Medical_records = lazy(() => import('./pages/Medical_recordPage.jsx'))
 
   return (
     <>
@@ -15,6 +18,7 @@ function App() {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
+        <Route path="/medical_record" element={<Medical_records />} />
         {/* <Route path="/" element={<User/>}/> */}
       </Routes>
     </Suspense>

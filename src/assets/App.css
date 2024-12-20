@@ -35,7 +35,8 @@ body {
 /*--------------------(  colors  )--------------------*/
 :root {
     --color-white: #f9f9f9;
-    --NavColor: #C4E8EF;
+    --NavColor:#215064;
+    --NavColor-hover: #C4E8EF;
     --color-black: #232323;
     --color-grey: rgb(106, 105, 105);
     --table-container-color: #215064;
@@ -46,6 +47,28 @@ body {
     --color-green: #24B472;
     --color-blue: #2196F3;
     --color-yellow: #FF9800;
+}
+
+/*--------------------(  back button  )--------------------*/
+.back-btn {
+    display: flex;
+    align-items: center;
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1.3rem);
+    padding: 5px;
+    border: none;
+    background-color: var(--NavColor);
+    color: var(--color-white);
+    border-radius: 20px;
+}
+
+.back-btn:hover {
+    transition: all .3s ease;
+    background-color: var(--color-green);
+}
+
+.back-btn:active {
+    transform: scale(0.90);
 }
 
 /*--------------------(  Common CSS  )--------------------*/
@@ -60,7 +83,7 @@ body {
 }
 .nav-bar h2 {
     margin-left: 50px;
-    color: var(--NavText-color);
+    color: var(--color-white);
 }
 
 /* sidebar */
@@ -98,12 +121,12 @@ body {
     font-size: 30px;
     background: none;
     border: none;
-    color: var(--color-black);
+    color: var(--color-white);
  }
 
  .sidebar-burger:hover {
     transition: all .3s ease;
-    color: var(--color-grey);
+    color: var(--NavColor-hover);
  }
 
 .sidebar-burger:active {
@@ -127,12 +150,12 @@ body {
     padding: 0 12px;
     border-radius: 8px;
     background: none;
-    color: var(--color-black);
+    color: var(--color-white);
     border: none;
     font-weight: 600;
 }
 .sidebar nav > button:hover {
-    background: var(--color-white);
+    background: var(--NavColor-hover);
     color: var(--color-black);
     transition: all ease .3s;
 }
@@ -148,29 +171,50 @@ body {
     display: none;
 }
 
-.logout {
+/* .logout {
     margin-top: 450px;
+} */
+
+.sidebar-title-container {
+    padding: 5px;
+}
+
+.sidebar-title {
+    margin: auto;
+    border-radius: 5px;
+    height: 80px;
+    /* width: 100px; */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    gap: 10px;
+    
+}
+
+.sidebar-title h2 {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1.1rem);
+    color: var(--color-white);
 }
 
 .sidebar-img {
     margin: auto;
     border-radius: 5px;
-    height: 80px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 100px;
+    background-color: var(--color-white);
+    border-radius: 50%;
 }
 
 .sidebar-img img {
     width: 100%;
     height: 100%;
     margin: auto;
-    object-fit: contain;
-    margin-top: 10px;
-}
+    object-fit: cover;
+}   
 
 /*--------------------(  Graph  )--------------------*/
 .graphs {
@@ -196,7 +240,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--NavColor);
+    background-color: var(--NavColor-hover);
     padding: 10px;
     border-radius: 20px;
     height:100%;
@@ -205,7 +249,7 @@ body {
 }
 
 .age, .allergies {
-    background-color: var(--NavColor);
+    background-color: var(--NavColor-hover);
     padding: 30px;
     width: 100%;
     max-width: 500px;
@@ -232,7 +276,7 @@ body {
 }
 
 .number-of-patients, .gender-count {
-    background-color: var(--NavColor);
+    background-color: var(--NavColor-hover);
     padding: 20px;
     border-radius: 20px;
 }
@@ -297,7 +341,7 @@ body {
 
 .patient-header button:hover {
     transition: all .3s ease;
-    background-color: var(--NavColor);
+    background-color: var(--NavColor-hover);
 }
 
 .patient-header button:active {
@@ -341,22 +385,22 @@ body {
     padding: 5px;
 }
 
-table {
+.patient-tables table {
     width: 100%;
 }
 
-th {
+.patient-tables th {
     font-family: poppins-bold;
     color: var(--color-black);
 }
 
-th, tr, td {
+.patient-tables th,.patient-tables tr,.patient-tables td {
     /* border: 1px solid var(--table-container-color); */
     border-radius: 5px;
     padding: 5px;
 }
 
-tr, td {
+.patient-tables tr,.patient-tables td {
     font-family: poppins-light;
     padding: 3px;
     transition: all .2s ease-out;
@@ -364,13 +408,13 @@ tr, td {
     font-size: clamp(0.3rem, 5vw, 0.8rem);
 }
 
-th:nth-child(8),td:nth-child(8) {
+.patient-tables th:nth-child(8),.patient-tables td:nth-child(8) {
  display: flex;
  align-items: center;
  justify-content: space-evenly;
 }
 
-td:nth-child(8) button {
+.patient-tables td:nth-child(8) button {
     padding: 2px;
     font-size: 20px;
     display: flex;
@@ -382,20 +426,20 @@ td:nth-child(8) button {
     border-radius: 2px;
 }
 
-td:nth-child(8) button:hover {
+.patient-tables td:nth-child(8) button:hover {
     transition: all .3s ease;
     background-color: var(--color-second-red);
 }
 
-td:nth-child(8) button:active {
+.patient-tables td:nth-child(8) button:active {
     transform: scale(0.85);
 }
 
-tr:hover {
-    background-color: var(--NavColor);
+.patient-tables tr:hover {
+    background-color: var(--NavColor-hover);
 }
 
-td:hover {
+.patient-tables td:hover {
     color: var(--color-black);
 }
 
@@ -499,7 +543,7 @@ td:hover {
 .modal-btn button:nth-child(1):hover, .modal-btn button:nth-child(2):hover, .modal-btn button:nth-child(3):hover {
     color: var(--color-black);
     transition: all .3s ease;
-    background-color: var(--NavColor);
+    background-color: var(--NavColor-hover);
 }
 
 .modal-btn button:active, .modal-btn2 button:active, .modal-btn3 button:active {
@@ -563,16 +607,141 @@ td:hover {
 
 .modal-btn3 button:nth-child(1):hover, .modal-btn3 button:nth-child(2):hover {
     transition: all .3s ease;
-    background-color: var(--NavColor);
+    background-color: var(--NavColor-hover);
     color: var(--color-black);
 }
 
+/*--------------------(  medical records  )--------------------*/
+.medical-records {
+    padding: 10px;
+}
+
+.medical-records .container {
+    background-color: var(--NavColor);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.medical-records .container h2 {
+    font-family: poppins-light;
+    font-size: clamp(1.1rem, 5vw, 1.1rem);
+    color: var(--color-white);
+}
+
+.medical-records .container table {
+    width: 100%;
+    /* border-collapse: collapse; */
+}
+.medical-records .container td {
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.medical-records .container td:nth-child(odd) {
+    text-align: right;
+    width: 15%;
+    color: var(--color-white);
+    font-family: poppins-bold;
+    font-size: clamp(.1rem, 5vw, .8rem);
+  }
+
+.medical-records .container td {
+    border: 1px solid var(--color-white);
+}
+
+.medical-records .container td input, .medical-records .container td select {
+    font-family: poppins-light;
+    color: var(--color-black);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color-white);
+    /* background-color: var(--NavColor); */
+}
 
 
+.medical-records .container tr:nth-child(1) td input {
+    width: 100%;
+}
 
 
+.medical-records .container form table .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.medical-records .container form table .checkbox .checkbox-cont input {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+}
+
+.medical-records .container form table .checkbox .checkbox-cont input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.2); /* Makes the checkboxes slightly larger */
+    cursor: pointer;
+  }
 
 
+.checkbox-cont {
+    font-family: poppins-light;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    color: var(--color-white);
+}   
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Spacing between the title and options */
+  }
+  
+  .checkbox-group h3 {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+  }
+  
+  .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Spacing between checkbox and label */
+  }
+  
+  .checkbox-option input[type="checkbox"] {
+    transform: scale(1.5); /* Adjust size of checkboxes */
+    cursor: pointer;
+  }
+  
+
+
+  /* Title styling */
+  .checkbox-title h3 {
+    font-family: poppins-light;
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* Group containing checkbox options */
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5px;
+    font-family: poppins-light;
+    color: var(--color-white);
+  }
+  
 
 
 

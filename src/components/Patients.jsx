@@ -1,3 +1,5 @@
+/****** react library ******/
+import { Link } from "react-router-dom";
 /****** react icons ******/
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -9,6 +11,7 @@ import Modal3 from "./common/Modal3";
 import useModalhooks from "../hooks/Modalhooks";
 
 const Patients = () => {
+  
   const {modal1,
     modal2,
     modal3,
@@ -50,7 +53,7 @@ const Patients = () => {
             <input type="text" placeholder="Search...."/>
             </div>
             <div className="add-patient">
-            <button>Add student patient</button>
+            <Link to='/medical_record'><button>Add student patient</button></Link>
             <button onClick={handleModal3Open}>Add employee patient</button>
             </div>
           </div><br/>
