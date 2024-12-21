@@ -1,5 +1,6 @@
 /****** react library ******/
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 /****** react icons ******/
 import { CgProfile } from "react-icons/cg";
 import { IoMdCloseCircle } from "react-icons/io";
@@ -18,10 +19,10 @@ const Modal1 = ({ isOpen, onClose }) => {
       </div><br/>
       <button className="modal-close" onClick={onClose}> <IoMdCloseCircle/></button>
       {/* buttons */}
-      <div className="modal-btn">
-        <button>Patient Record</button>
-        <button>Medical Certificate</button>
-        <button>Referral Form</button>
+      <div className="modal-btn1">
+        <Link to='/patient_record'><button onClick={onClose}>Patient Record</button></Link>
+        <Link to='/medical_cert'><button onClick={onClose}>Medical Certificate</button></Link>
+        <Link to='/referral'><button onClick={onClose}>Referral Form</button></Link>
         </div>
       </div>
     </div>

@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom"
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Modal4 from "../common/Modal4";
+import useModalhooks from "../../hooks/Modalhooks";
 
 const MedicalRecords = () => {
+  const {
+    modal4,
+    handleModal4Open,
+    handleModal4Close
+  } = useModalhooks()
+
   return (
     <>
       <div className="medical-records">
@@ -10,7 +18,8 @@ const MedicalRecords = () => {
 
         {/* Patient Information */}
         <h2>Patient Information</h2>
-        <form>
+        <form onSubmit={(e) => {e.preventDefault()
+           handleModal4Open()}}>
         <table>
           {/* Patient layer 1 */}
           <tr>
@@ -67,7 +76,7 @@ const MedicalRecords = () => {
             <td>Cell No.</td>
             <td><input type="text" placeholder="Contact..." style={{ width: "100%" }} /></td>
           </tr>
-        </table><br/>
+        </table><br/><br/>
 
         {/* Past Medical and Dental History */}
         <h2>Past Medical and Dental History  (Fill out if applicable)</h2>
@@ -100,7 +109,7 @@ const MedicalRecords = () => {
           <td>Primary care physician:</td>
           <td colSpan={2}><input type="text" placeholder="Primary care physician..." style={{ width: "100%" }} /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
 
         {/* Family Medical History  (Fill out if applicable) */}
         <h2>Family Medical History  (Fill out if applicable)</h2>
@@ -161,7 +170,7 @@ const MedicalRecords = () => {
           <td>Primary care physician:</td>
           <td colSpan={2}><input type="text" placeholder="Primary care physician..." style={{ width: "100%" }} /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
 
         {/* Personal and Social History  (Fill out if applicable) */}
         <h2>Personal and Social History  (Fill out if applicable)</h2>
@@ -178,7 +187,7 @@ const MedicalRecords = () => {
           <td>Illicit drug use:</td>
           <td colSpan={2}><input type="text" placeholder="Illicit drug use..." style={{ width: "100%" }} /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
 
         {/* For Females (Fill out if applicable) */}
         <h2>For Females (Fill out if applicable)</h2>
@@ -256,7 +265,7 @@ const MedicalRecords = () => {
           <td>Children (If you have, how many?):</td>
           <td colSpan={2}><input type="text" placeholder="Children (If you have, how many?)..." style={{ width: "100%" }} /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
         
         {/* Physical Examination  */}
         <h2>Physical Examination </h2>
@@ -289,7 +298,7 @@ const MedicalRecords = () => {
          <td>Other:</td>
          <td><input type="text" placeholder="Other..." /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
 
         {/* Physical Examination  */}
         <h2>Diagnostic Results (Pls. include date of examination)</h2>
@@ -301,7 +310,7 @@ const MedicalRecords = () => {
          <td>Impression:</td>
          <td colSpan={2}><input type="text" placeholder="Impression..." /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
 
         {/* Plan  */}
         <h2>Plan</h2>
@@ -339,56 +348,65 @@ const MedicalRecords = () => {
          <td>Referred:</td>
          <td colSpan={2}><input type="text" placeholder="Referred..." style={{ width: "100%" }} /></td>
         </tr>
-        </table><br/>
+        </table><br/><br/>
 
+        {/* Recommendation */}
+        <h2>Recommendation</h2>
+        {/* Recommendation layer 1 */}
+        <div className="checkbox-recommend-parent">
+        <div className="border-test">
+        <div className="checkbox-recommend-child">
+         <input type="checkbox"/>
+         <h3>Fit to enroll</h3>
+         </div>
+         <div className="checkbox-recommend-child">
+         <input type="checkbox"/>
+         <h3>Fit to work</h3>
+         </div>
+         <div className="checkbox-recommend-child">
+         <input type="checkbox"/>
+         <h3>Fit to participate sports</h3>
+         </div>
+         </div>
+         {/* Recommendation layer 2 */}
+         <div className="border-test">
+        <div className="checkbox-recommend-child">
+         <input type="checkbox"/>
+         <h3>Fit to enroll but require further evaluation</h3>
+         </div>
+         <div className="checkbox-recommend-child">
+         <input type="checkbox"/>
+         <h3>Fit to work but require further evaluation</h3>
+         </div>
+         <div className="checkbox-recommend-child">
+         <input type="checkbox"/>
+         <h3>Fit to participate sports but require further evaluation</h3>
+         </div>
+         </div>
+        </div>
+        <br/>
+        <br/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        {/* last */}
+        {/* last layer 1 */}
+        <div className="last-container-parent">
+        <div className="last-container-child">
+        <input type="text" placeholder="Physician name..."/>
+        <input type="text" placeholder="License number..."/>
+        <input type="date" placeholder="Date"/>
+        </div>
+        <div className="last-container-child">
+        <Link to="/"><button>Cancel</button></Link>
+        <button type="submit">Submit</button>
+        </div>
+        </div>
 
       </form>
         </div>
       </div>
+
+      {/* Modal */}
+            <Modal4 isOpen={modal4} onClose={handleModal4Close} />
     </>
   )
 }

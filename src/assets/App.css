@@ -482,6 +482,11 @@ body {
     font-size: clamp(1.1rem, 5vw, 4rem);
     color: var(--color-maroon);
 }
+
+.modal-txt .icon4 {
+    font-size: clamp(1.1rem, 5vw, 4rem);
+    color: var(--color-green);
+}
 .modal-txt h3 {
     font-family: poppins-bold;
 }
@@ -511,7 +516,7 @@ body {
     transform: scale(0.85);
 }
 
-.modal-btn {
+.modal-btn1 {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -529,8 +534,14 @@ body {
     justify-content: space-around;
 }
 
+.modal-btn4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 /* modal button 1 */
-.modal-btn button {
+.modal-btn1 button {
     font-family: poppins-bold;
     padding: 10px;
     border-radius: 10px;
@@ -540,23 +551,23 @@ body {
     cursor: pointer;
 }
 
-.modal-btn button:nth-child(1):hover, .modal-btn button:nth-child(2):hover, .modal-btn button:nth-child(3):hover {
+.modal-btn1 button:nth-child(1):hover, .modal-btn1 button:nth-child(2):hover, .modal-btn1 button:nth-child(3):hover {
     color: var(--color-black);
     transition: all .3s ease;
     background-color: var(--NavColor-hover);
 }
 
-.modal-btn button:active, .modal-btn2 button:active, .modal-btn3 button:active {
+.modal-btn button:active, .modal-btn2 button:active, .modal-btn3 button:active, .modal-btn4 button:active {
     transform: scale(0.85);
 }
 
-.modal-btn button:nth-child(1) {
+.modal-btn1 a:nth-child(1) button {
     background-color: var(--color-green) ;
 }
-.modal-btn button:nth-child(2) {
+.modal-btn1 a:nth-child(2) button {
     background-color: var(--color-blue) ;
 }
-.modal-btn button:nth-child(3) {
+.modal-btn1 a:nth-child(3) button {
     background-color: var(--color-yellow) ;
 }
 
@@ -611,6 +622,29 @@ body {
     color: var(--color-black);
 }
 
+/* modal button 4 */
+.modal-btn4 button {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1rem);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.modal-btn4 button:nth-child(1) {
+    background-color: var(--color-green) ;
+}
+
+.modal-btn4 button:nth-child(1):hover {
+    transition: all .3s ease;
+    background-color: var(--NavColor-hover);
+    color: var(--color-black);
+}
+
 /*--------------------(  medical records  )--------------------*/
 .medical-records {
     padding: 10px;
@@ -631,6 +665,7 @@ body {
 .medical-records .container table {
     width: 100%;
     /* border-collapse: collapse; */
+    border: 1px solid var(--color-white);
 }
 .medical-records .container td {
     padding: 5px;
@@ -645,9 +680,9 @@ body {
     font-size: clamp(.1rem, 5vw, .8rem);
   }
 
-.medical-records .container td {
+/* .medical-records .container td {
     border: 1px solid var(--color-white);
-}
+} */
 
 .medical-records .container td input, .medical-records .container td select {
     font-family: poppins-light;
@@ -743,7 +778,539 @@ body {
   }
   
 
+.checkbox-recommend-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid var(--color-white);
+}
 
+.checkbox-recommend-child {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.checkbox-recommend-child input {
+    width: 20px;
+}
+
+.checkbox-recommend-child h3 {
+    font-family: poppins-light;
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.last-container-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    border: 1px solid var(--color-white);
+}
+
+.last-container-child {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.last-container-child input {
+    font-family: poppins-light;
+    color: var(--color-black);
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.last-container-child button {
+    font-family: poppins-bold;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.last-container-child button:nth-child(1) {
+    background-color: var(--NavColor);
+    border: 2px solid var(--color-white);
+    width: 100%;
+}
+
+.last-container-child button:nth-child(2) {
+    background-color: var(--color-yellow);
+}
+
+.last-container-child button:hover {
+    transition: all .2s ease;
+    background-color: var(--NavColor-hover);
+    color: var(--color-black);
+}
+
+.last-container-child button:active {
+    transform: scale(0.90);
+}
+
+/*--------------------(  medical certiicate  )--------------------*/
+/*******************************
+ * Form Styles
+ * A comprehensive stylesheet for form elements
+ * Features:
+ * - Responsive container layout
+ * - Custom form field styling
+ * - Signature section
+ * - Certification fields
+ * - Consistent spacing and alignment
+ *******************************/
+
+/*******************************
+ * Typography & Global Variables
+ * Defines font families and other global variables
+ *******************************/  
+  /* Container styles */
+  .medical-cert, .patient-record, .referral {
+    padding: 20px;
+    font-family: poppins-light;
+    font-size: .9rem;
+  }
+
+  .medical-cert-container, .patient-container, .referral-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #215064;
+    padding: 30px;
+    color: white;
+    border-radius: 6px;
+  }
+  
+  /* Header styles */
+  header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: var(--font-archivo);
+  }
+  
+  /* Form details */
+  .medical-cert-container form .details,
+  .patient-container form .details,
+  .referral-container form .details {
+    margin-top: 10px;
+  }
+  
+  /* Form end fields */
+  .medical-cert-container form .endfields, 
+  .patient-container form .endfields,
+  .referral-container form .endfields {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /*******************************
+   * Form Controls
+   * Common styles for:
+   * - Input fields
+   * - Select dropdowns
+   * - Textareas 
+   * Features bottom borders and hover states
+   *******************************/
+  /* Labels for various fields */
+  .datefield label,
+  .largefield label,
+  .smallfield label,
+  .mediumfield label {
+    font-size: 15px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  /* Input and select field styles */
+  .medical-cert  input,
+  .medical-cert  select,
+  .medical-cert  textarea,
+  .patient-container  input,
+  .patient-container  select,
+  .patient-container  textarea,
+  .referral-container input,
+  .referral-container select,
+  .referral-container textarea,
+  #tofield,
+  #comment {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    padding: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 0;
+    outline: none;
+    color: white;
+  }
+  
+  /* Notefield styles */
+  #notefield {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: var(--color-white);
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 0;
+    outline: none;
+    color:var(--color-black);
+    height: 500px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+/* Placeholder styles */
+.medical-cert input::placeholder,
+.medical-cert textarea::placeholder 
+.patient-container input::placeholder,
+.patient-container textarea::placeholder
+.referral-container input::placeholder,
+.referral-container textarea::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+/* Focus styles */
+.medical-cert input:focus,
+.medical-cert select:focus,
+.medical-cert textarea:focus,
+.patient-container input:focus,
+.patient-container select:focus,
+.patient-container textarea:focus,
+
+.referral-container input:focus,
+.referral-container select:focus,
+.referral-container textarea:focus,
+#notefield:focus,
+#tofield:focus,
+#comment:focus {
+  border-bottom: 2px solid #3498db;
+}
+
+/* Select field styles */
+.medical-cert select, .patient-container select, .referral-container select {
+  height: 30px;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+}
+
+/* Options within select */
+.medical-cert select option, .patient-container select option, .referral-container select option {
+  color: black;
+}
+  
+  /*******************************
+   * Form Field Layouts
+   * Defines various field sizes and layouts:
+   * - Date fields (150px)
+   * - Large fields (400px)
+   * - Medium fields (300px)
+   * - Small fields (150px)
+   *******************************/
+  /* Datefield styles */
+  .datefield {
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+  }
+  
+  /* Large field styles */
+  .largefield {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 4px 0;
+  }
+  
+  /* Medium field styles */
+  .mediumfield {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    margin: 4px 0;
+  }
+  
+  /* Small field styles */
+  .smallfield {
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    margin: 4px 0;
+  }
+  
+  /* Dual field styles */
+  .form-row.dualfield {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  /* Twofield styles within dualfield */
+  .dualfield .twofield {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 4px 0;
+  }
+  
+  /* Textarea styles */
+.medical-cert textarea, .patient-container textarea, .referral-container textarea {
+    width: 550px;
+    height: 100px;
+    margin: 8px 0;
+    padding: 10px;
+    resize: none;
+    color: white;
+  }
+  
+  /* Additional section styles */
+  .additional-section .largefield {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Labels within additional section */
+  .additional-section label {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  /*******************************
+   * Layout Utilities
+   * Spacing classes for vertical rhythm
+   *******************************/
+  /* Spacer styles */
+  .spacer-150 {
+    height: 150px;
+  }
+  
+  .spacer-50 {
+    height: 50px;
+  }
+  
+  .spacer-20 {
+    height: 20px;
+  }
+  
+  /*******************************
+   * Signature & Authorization
+   * Styles for signature fields and layout
+   *******************************/
+  /* Center sign styles */
+  .centersign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 455px;
+  }
+  
+  /* Sign section styles */
+  .signsection {
+    display: flex;
+    justify-content: space-between;
+    gap: 250px;
+  }
+  
+  /* Sign field styles within sign section */
+  .signsection .signfield {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 4px 0;
+  }
+  
+  /* Label styles within sign fields */
+  .signfield label {
+    color: #fff;
+    text-align: center;
+  }
+  
+  /* Center alignment styles */
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 455px;
+    margin-top: 50px;
+  }
+  
+  /*******************************
+   * Form Actions
+   * Submit and cancel buttons
+   * Right-aligned footer section
+   *******************************/
+  /* Form footer styles */
+  .form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+    margin-left: 300px;
+    align-items: flex-end;
+  }
+  
+  /* Submit and cancel button styles */
+  .submit,
+  .cancel {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 27.5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Cancel button styles */
+  .cancel {
+    background-color: #215064;
+    color: white;
+    border: 3px solid #fff;
+  }
+  
+  /* Submit button styles */
+  .submit {
+    background-color: #FCDD62;
+    color: #215064;
+  }
+  
+  /* General label styles */
+  label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  /* Input and select styles */
+.medical-cert-container input,
+.medical-cert-container select
+.patient-container input,
+.patient-container select 
+.referral-container input,
+.referral-container select {
+    height: 30px;
+    padding: 5px;
+    color: white;
+  }
+  
+  /*******************************
+   * Table Layout
+   * Styles for tabular form layouts
+   * Includes cell spacing and alignment
+   *******************************/
+  /* Form table styles */
+  .form-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  
+  /* Form table cell styles */
+  .form-table td {
+    padding: 5px;
+  }
+  
+  /* Name field styles */
+  .namefield {
+    width: 500px;
+  }
+  
+  /* Age field styles */
+  .agefield {
+    width: 100px;
+  }
+  
+  /* Gender field styles */
+  .genderfield {
+    width: 150px;
+  }
+  
+  /* Input and select styles within fields */
+  .namefield input,
+  .agefield input,
+  .genderfield select {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    padding: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  /* Indented paragraph styles */
+  p.indent {
+    text-indent: 40px;
+    font-family: var(--font-inter);
+  }
+  
+  /*******************************
+   * Certification Section
+   * Special fields for certification data
+   * Includes multiple field sizes with consistent styling
+   *******************************/
+  /* Certification field styles */
+  .certlargefield,
+  .certmediumfield,
+  .certsmallfield {
+    margin: 10px;
+  }
+  
+  /* Certification large field styles */
+  .certlargefield {
+    width: 500px;
+    height: 25px;
+  }
+  
+  /* Certification medium field styles */
+  .certmediumfield {
+    width: 125px;
+    height: 25px;
+  }
+  
+  /* Certification small field styles */
+  .certsmallfield {
+    width: 100px;
+    height: 25px;
+  }
+  
+  /* No margin field styles */
+  .nomarginfield {
+    width: 500px;
+    height: 25px;
+  }
+  
+  /* No margin date field styles */
+  .nomargindatefield {
+    width: 125px;
+    height: 25px;
+  }
+  
+  /* Focus styles for certification fields */
+  .certlargefield:focus,
+  .certsmallfield:focus,
+  .certmediumfield:focus {
+    border-bottom: 2px solid #3498db;
+  }
 
 
 
