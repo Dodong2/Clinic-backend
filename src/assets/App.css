@@ -876,13 +876,13 @@ body {
  * Defines font families and other global variables
  *******************************/  
   /* Container styles */
-  .medical-cert, .patient-record, .referral {
+  .medical-cert, .patient-record, .referral, .employee-cert, .annual {
     padding: 20px;
     font-family: poppins-light;
     font-size: .9rem;
   }
 
-  .medical-cert-container, .patient-container, .referral-container {
+  .medical-cert-container, .patient-container, .referral-container, .employee-cert-container, .annual-container {
     max-width: 900px;
     width: 100%;
     margin: 0 auto;
@@ -903,14 +903,18 @@ body {
   /* Form details */
   .medical-cert-container form .details,
   .patient-container form .details,
-  .referral-container form .details {
+  .referral-container form .details,
+  .employee-cert-container form .details,
+  .annual-container form .details {
     margin-top: 10px;
   }
   
   /* Form end fields */
   .medical-cert-container form .endfields, 
   .patient-container form .endfields,
-  .referral-container form .endfields {
+  .referral-container form .endfields,
+  .employee-cert-container form .endfields,
+  .annual-container form .endfields {
     display: flex;
     justify-content: flex-end;
   }
@@ -943,6 +947,13 @@ body {
   .referral-container input,
   .referral-container select,
   .referral-container textarea,
+  .employee-cert-container input,
+  .employee-cert-container select,
+  .employee-cert-container textarea,
+
+  .annual-container input,
+  .annual-container select,
+  .annual-container textarea,
   #tofield,
   #comment {
     border: none;
@@ -978,7 +989,11 @@ body {
 .patient-container input::placeholder,
 .patient-container textarea::placeholder
 .referral-container input::placeholder,
-.referral-container textarea::placeholder {
+.referral-container textarea::placeholder,
+.employee-cert-container input::placeholder,
+.employee-cert-container textarea::placeholder,
+.annual-container input::placeholder,
+.annual-container textarea::placeholder {
   color: white;
   opacity: 1;
 }
@@ -990,10 +1005,16 @@ body {
 .patient-container input:focus,
 .patient-container select:focus,
 .patient-container textarea:focus,
-
 .referral-container input:focus,
 .referral-container select:focus,
 .referral-container textarea:focus,
+.employee-cert-container input:focus,
+.employee-cert-container select:focus,
+.employee-cert-container textarea:focus,
+
+.annual-container input:focus,
+.annual-container select:focus,
+.annual-container textarea:focus,
 #notefield:focus,
 #tofield:focus,
 #comment:focus {
@@ -1001,7 +1022,7 @@ body {
 }
 
 /* Select field styles */
-.medical-cert select, .patient-container select, .referral-container select {
+.medical-cert select, .patient-container select, .referral-container select, .employee-cert-container select, .annual-container select {
   height: 30px;
   padding: 5px;
   background: transparent;
@@ -1011,7 +1032,7 @@ body {
 }
 
 /* Options within select */
-.medical-cert select option, .patient-container select option, .referral-container select option {
+.medical-cert select option, .patient-container select option, .referral-container select option,.employee-cert-container select option, .annual-container select option {
   color: black;
 }
   
@@ -1070,7 +1091,7 @@ body {
   }
   
   /* Textarea styles */
-.medical-cert textarea, .patient-container textarea, .referral-container textarea {
+.medical-cert textarea, .patient-container textarea, .referral-container textarea, .employee-cert-container textarea, .annual-container textarea{
     width: 550px;
     height: 100px;
     margin: 8px 0;
@@ -1205,7 +1226,11 @@ body {
 .patient-container input,
 .patient-container select 
 .referral-container input,
-.referral-container select {
+.referral-container select,
+.employee-cert-container input,
+.employee-cert-container select,
+.annual-container input,
+.annual-container select {
     height: 30px;
     padding: 5px;
     color: white;
@@ -1311,6 +1336,116 @@ body {
   .certmediumfield:focus {
     border-bottom: 2px solid #3498db;
   }
+
+/* Instructions section */
+
+/* Center align instructions */
+.instructions {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+}
+
+.instructions h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.instructions p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Checkbox list as a column */
+.checkbox-list {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.checkbox-list label {
+  display: block;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.form-row .dosfield:nth-child(2) {
+  margin-top: 20px; /* Add your desired margin */
+}
+
+.instructions h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.instructions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.instructions ul li {
+  margin: 5px 0;
+}
+
+.instructions input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Section headings */
+.employee-cert-container section h3 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Textarea styles */
+.employee-cert-container textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+}
+
+/* Radio buttons */
+.employee-cert-container input[type="radio"] {
+  margin-left: 10px;
+}
+
+/* Date input alignment */
+
+
+.certification {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ffffff; /* Adjust text color as necessary */
+}
+
+.certification p {
+  margin: 0;
+  padding: 10px;
+}
+
+.checkbox-inline {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 5px;
+  vertical-align: middle; /* Adjust vertical alignment */
+}
+
+.employee-cert-container input[type="checkbox"] {
+  position: relative;
+  margin-right: 5px;
+}
+
+
+
+.certification h4 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
 
 

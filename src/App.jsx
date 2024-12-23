@@ -15,17 +15,28 @@ function App() {
   const MedicalcertPage = lazy(() => import('./pages/MedicalcertPage.jsx'))
   const PatientrecordPage = lazy(() => import('./pages/PatientrecordPage.jsx'))
   const ReferralFormPage = lazy(() => import('./pages/ReferralFormPage.jsx'))
+  // const Patients = lazy(() => import('./components/Patients.jsx'))
+//Employee page
+  const Employee_medical_certPage = lazy(() => import('./pages/Employee_medical_certPage.jsx'))
+  const Annual_updatePage = lazy(() => import('./pages/Annual_updatePage.jsx'))
 
   return (
     <>
     <Router>
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
+{/* admin dashboard page */}
         <Route path="/" element={<DashboardPage />} />
+        {/*<Route path="/patients" element={<Patients />} />*/}
+{/* Student patient page */}
         <Route path="/medical_record" element={<Medical_records />} />
+{/* Student and Employee page */}
         <Route path="/medical_cert" element={<MedicalcertPage />} />
         <Route path="/patient_record" element={<PatientrecordPage />} />
         <Route path="/referral" element={<ReferralFormPage />} />
+{/* Employee page */}
+        <Route path="/employee_cert" element={<Employee_medical_certPage />} />
+        <Route path="/annual" element={<Annual_updatePage />} />
         {/* <Route path="/" element={<User/>}/> */}
       </Routes>
     </Suspense>
