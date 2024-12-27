@@ -1,5 +1,6 @@
 /****** react library ******/
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 /****** react icons ******/
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -9,9 +10,17 @@ import Modal1 from './common/Modal1'
 import Modal2 from "./common/Modal2";
 import Modal3 from "./common/Modal3";
 import useModalhooks from "../hooks/Modalhooks";
+/****** firebase ******/
+import { db } from '../firebase-config'
+import {collection, getDocs, orderBy, query, doc, deleteDoc, getDoc} from 'firebase/firestore'
+
 
 const Patients = () => {
-  
+//Hooks
+  const [lists, setLists] = useState([])
+  const listsCollections = collection(db, "lists")
+
+//logics
   const {modal1,
     modal2,
     modal3,
@@ -23,6 +32,30 @@ const Patients = () => {
     handleModal3Close
   } = useModalhooks()
 
+//get
+query
+  useEffect(() => {
+    const getPatientLists = async () => {
+      const q = query(listsCollections, orderBy("createdAt", "desc"))
+      const data = await getDocs(q)
+      setLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    getPatientLists()
+  }, [])
+//no query
+  // useEffect(() => {
+  //   const getPatientLists = async () => {
+  //     try {
+  //       const data = await getDocs(listsCollections);
+  //       console.log("Fetched Data (No Query):", data.docs.map(doc => doc.data()));
+  //       setLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //     } catch (error) {
+  //       console.error("Error fetching patient lists:", error.message);
+  //     }
+  //   };
+  //   getPatientLists();
+  // }, []);
+  
 
   return (
     <>
@@ -62,29 +95,28 @@ const Patients = () => {
           <div className="patient-tables">
           <table>
           <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Gender</th>
             <th>Age</th>
-            <th>Blood Type</th>
             <th>Medical History</th> 
             <th>Allergies</th> 
             <th>Action</th> 
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Alison Rrysaldi C Dizon</td>
-            <td>Male</td>
-            <td>20</td>
-            <td>O</td>
-            <td>Pneunomia</td>
-            <td>Shrimp</td>
+          {lists && lists.map((list) => (
+            <tr key={list.id}>
+            <td>{list.given_name} {list.middle_name} {list.surname}</td>
+            <td>{list.sex}</td>
+            <td>{list.age}</td>
+            <td>{list.known_illness}</td>
+            <td>{list.allergy}</td>
             <td>
               <button> <CgProfile/> </button>
               <button onClick={handleModal1Open}> <FiEdit/> </button>
               <button onClick={handleModal2Open}> <FiTrash/> </button>
             </td>
           </tr>
+          ))}
+          
         </table>
           </div>
         </div>

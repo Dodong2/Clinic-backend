@@ -408,13 +408,13 @@ body {
     font-size: clamp(0.3rem, 5vw, 0.8rem);
 }
 
-.patient-tables th:nth-child(8),.patient-tables td:nth-child(8) {
+.patient-tables th:nth-child(6),.patient-tables td:nth-child(6) {
  display: flex;
  align-items: center;
  justify-content: space-evenly;
 }
 
-.patient-tables td:nth-child(8) button {
+.patient-tables td:nth-child(6) button {
     padding: 2px;
     font-size: 20px;
     display: flex;
@@ -426,12 +426,12 @@ body {
     border-radius: 2px;
 }
 
-.patient-tables td:nth-child(8) button:hover {
+.patient-tables td:nth-child(6) button:hover {
     transition: all .3s ease;
     background-color: var(--color-second-red);
 }
 
-.patient-tables td:nth-child(8) button:active {
+.patient-tables td:nth-child(6) button:active {
     transform: scale(0.85);
 }
 
