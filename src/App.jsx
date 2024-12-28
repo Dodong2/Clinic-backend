@@ -9,6 +9,7 @@ function App() {
 //Pages
 //admin dashboard page
   const DashboardPage = lazy(() => import('./pages/MainDashboard.jsx'))
+  const AddLogbook = lazy(() => import('../src/components/AddLogbook.jsx'))
 //Student patient page
   const Medical_records = lazy(() => import('./pages/Medical_recordPage.jsx'))
 //Student and Employee page
@@ -27,6 +28,7 @@ function App() {
       <Routes>
 {/* admin dashboard page */}
         <Route path="/" element={<DashboardPage />} />
+        <Route path="/addlog" element={<AddLogbook />} />
         {/*<Route path="/patients" element={<Patients />} />*/}
 {/* Student patient page */}
         <Route path="/medical_record" element={<Medical_records />} />

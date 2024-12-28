@@ -10,15 +10,18 @@ import Modal1 from './common/Modal1'
 import Modal2 from "./common/Modal2";
 import Modal3 from "./common/Modal3";
 import useModalhooks from "../hooks/Modalhooks";
+import UpdateMedicalRecords from "./student side/UpdateMedicalRecords";
 /****** firebase ******/
 import { db } from '../firebase-config'
-import {collection, getDocs, orderBy, query, doc, deleteDoc, getDoc} from 'firebase/firestore'
+import {collection, getDocs, orderBy, query, doc, deleteDoc} from 'firebase/firestore'
 
 
 const Patients = () => {
 //Hooks
   const [lists, setLists] = useState([])
   const listsCollections = collection(db, "lists")
+  const [selectPatient, setSelectPatient] = useState(null)
+  const [selectedPatientId, setSelectedPatientId] = useState(null);
 
 //logics
   const {modal1,
@@ -42,20 +45,30 @@ query
     }
     getPatientLists()
   }, [])
-//no query
-  // useEffect(() => {
-  //   const getPatientLists = async () => {
-  //     try {
-  //       const data = await getDocs(listsCollections);
-  //       console.log("Fetched Data (No Query):", data.docs.map(doc => doc.data()));
-  //       setLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     } catch (error) {
-  //       console.error("Error fetching patient lists:", error.message);
-  //     }
-  //   };
-  //   getPatientLists();
-  // }, []);
+
+//update
+  const handleUpdatePatients = (updatedList) => {
+    setLists((prevLists) => 
+      prevLists.map((list) =>
+      list.id === updatedList.id ? updatedList : list
+      )
+    )
+  }
   
+//delete
+  const deletePatient = async() => {
+    try {
+      if(selectedPatientId) {
+      const patientDoc = doc(db, "lists", selectedPatientId)
+      await deleteDoc(patientDoc)
+      setLists((prevLists) =>  prevLists.filter((list) => list.id !== selectedPatientId))
+      setSelectedPatientId(null)
+      handleModal2Close()
+      }
+    } catch (error) {
+      console.error("Error deleting patient", error)
+    }
+  }
 
   return (
     <>
@@ -110,9 +123,9 @@ query
             <td>{list.known_illness}</td>
             <td>{list.allergy}</td>
             <td>
-              <button> <CgProfile/> </button>
+              <button onClick={() => setSelectPatient(list)}> <CgProfile/> </button>
               <button onClick={handleModal1Open}> <FiEdit/> </button>
-              <button onClick={handleModal2Open}> <FiTrash/> </button>
+              <button onClick={()=> {setSelectedPatientId(list.id); handleModal2Open()} }> <FiTrash/> </button>
             </td>
           </tr>
           ))}
@@ -124,8 +137,12 @@ query
 
       {/* Modal */}
       <Modal1 isOpen={modal1} onClose={handleModal1Close} />
-      <Modal2 isOpen={modal2} onClose={handleModal2Close}/>
+      <Modal2 isOpen={modal2} onClose={() => {setSelectedPatientId(null); handleModal2Close()}} onDelete={deletePatient}/>
       <Modal3 isOpen={modal3} onClose={handleModal3Close}/>
+
+      {selectPatient && (
+        <UpdateMedicalRecords list={selectPatient} onClose={() => setSelectPatient(null)} onUpdate={handleUpdatePatients}/>
+      )}
     </>
   )
 }

@@ -1,21 +1,25 @@
 /****** react library ******/
 import { useState } from "react";
 import PropTypes from "prop-types";
+// import { useNavigate } from "react-router-dom";
 /****** react icons ******/
 import { IoMenu, IoClose } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { BiSolidLogOut } from "react-icons/bi";
+import { LuBookText } from "react-icons/lu";
 /****** assets ******/
 import clinic from '../../assets/images/LSPUlogo.png'
 
 
 const SideBar = ({ onPageChange  }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // const navigate = useNavigate();
 
   const handlePageChange = (page) => {
     onPageChange(page); // I-trigger ang parent function para magbago ang page
     setIsOpen(false);   // Isara ang sidebar
+    // navigate(route);
   };
 
   return (
@@ -36,8 +40,9 @@ const SideBar = ({ onPageChange  }) => {
           </header>
           {/* sidebar nav button pages */}
           <nav className={isOpen ? "" : "notxt"}>
-          <button onClick={() => handlePageChange("dashboard")}>< LuLayoutDashboard/><span>Dashboard</span></button>
-          <button onClick={() => handlePageChange("patients")}><CgProfile/> <span>Patients</span></button>
+          <button onClick={() => handlePageChange("Dashboard", "/")}>< LuLayoutDashboard/><span>Dashboard</span></button>
+          <button onClick={() => handlePageChange("Patients", "/patients")}><CgProfile/> <span>Patients</span></button>
+          <button onClick={() => handlePageChange("Logbook", "/logbook")}><LuBookText/> <span>Patients</span></button>
           <button className="logout"><BiSolidLogOut/> <span>Logout</span></button>
           </nav>
         </div>

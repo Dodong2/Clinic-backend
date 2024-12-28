@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 /****** react icons ******/
 import { IoMdCloseCircle } from "react-icons/io";
 
-const Modal2 = ({ isOpen, onClose }) => {
+const Modal2 = ({ isOpen, onClose, onDelete }) => {
   if (!isOpen) return null;
+  
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -18,7 +19,7 @@ const Modal2 = ({ isOpen, onClose }) => {
       {/* buttons */}
       <div className="modal-btn2">
       <button onClick={onClose}>Cancel</button>
-        <button>Delete</button>
+        <button onClick={onDelete}>Delete</button>
         </div>
       </div>
     </div>
@@ -28,6 +29,7 @@ const Modal2 = ({ isOpen, onClose }) => {
 Modal2.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Modal2;

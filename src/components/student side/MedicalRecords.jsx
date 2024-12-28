@@ -1,5 +1,5 @@
 /****** react library ******/
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useState } from "react";
 /****** Icons ******/
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -228,6 +228,7 @@ const MedicalRecords = () => {
         <h2>Patient Information</h2>
         <form onSubmit={addStudentPatients}>
         <table>
+        <tbody>
           {/* Patient layer 1 */}
           <tr>
             <td>Surname:</td>
@@ -243,8 +244,9 @@ const MedicalRecords = () => {
             <td><input type="text" placeholder="Age..." onChange={(event) => setAge(event.target.value)} /></td>
             <td>Sex:</td>
             <td><select value={sex} onChange={(event) => setSex(event.target.value)} >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="" disabled>Sex...</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select></td>
             <td>Status:</td>
             <td><input type="text" placeholder="Status..." onChange={(event) => setStatus(event.target.value)} /></td>
@@ -254,7 +256,8 @@ const MedicalRecords = () => {
             <td>Date of Birth:</td>
             <td><input type="date" placeholder="MM-DD-YYYY" onChange={(event) => setBirth(event.target.value)} /></td>
             <td>Course:</td>
-            <td><select value={course} onChange={(event) => setCourse(event.target.value)} >
+            <td><select value={course} name="course" onChange={(event) => setCourse(event.target.value)} >
+            <option value="" disabled>Course...</option>
             <option value="null">Bachelor of Science in Psychology</option>
             <option value="null">Bachelor of Science in Accountancy</option>
             <option value="null">Bachelor of Science in Business Administration</option>
@@ -299,11 +302,13 @@ const MedicalRecords = () => {
             <td>Cell No.</td>
             <td><input type="text" placeholder="Contact..." style={{ width: "100%" }} onChange={(event) => setGuardian_contact(event.target.value)} /></td>
           </tr>
+          </tbody>
         </table><br/><br/>
 
         {/* Past Medical and Dental History */}
         <h2>Past Medical and Dental History  (Fill out if applicable)</h2>
         <table>
+        <tbody>
         {/* Past layer 1 */}
         <tr>
           <td>Previous/present known illness:</td>
@@ -332,11 +337,13 @@ const MedicalRecords = () => {
           <td>Primary care physician:</td>
           <td colSpan={2}><input type="text" placeholder="Primary care physician..." style={{ width: "100%" }} onChange={(event) => setPrimary_physician(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
 
         {/* Family Medical History  (Fill out if applicable) */}
         <h2>Family Medical History  (Fill out if applicable)</h2>
         <table>
+        <tbody>
         {/* Family layer 1 */}
         <tr>
           <td>Allergy:</td>
@@ -393,11 +400,13 @@ const MedicalRecords = () => {
           <td>Primary care physician:</td>
           <td colSpan={2}><input type="text" placeholder="Primary care physician..." style={{ width: "100%" }} onChange={(event) => setFamily_primary_care_physician(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
 
         {/* Personal and Social History  (Fill out if applicable) */}
         <h2>Personal and Social History  (Fill out if applicable)</h2>
         <table>
+        <tbody>
         {/* Personal layer 1 */}
         <tr>
           <td>Alcohol intake:</td>
@@ -410,12 +419,14 @@ const MedicalRecords = () => {
           <td>Illicit drug use:</td>
           <td colSpan={2}><input type="text" placeholder="Illicit drug use..." style={{ width: "100%" }} onChange={(event) => setIllicit_drug_use(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
 
         {/* For Females (Fill out if applicable) */}
         <h2>For Females (Fill out if applicable)</h2>
         <h2>A. Menstrual period</h2>
         <table>
+        <tbody>
         {/* Females layer 1 */}
         <tr>
           <td>menstrual period (MM-DD-YYYY):</td>
@@ -489,11 +500,13 @@ const MedicalRecords = () => {
           <td>Children (If you have, how many?):</td>
           <td colSpan={2}><input type="text" placeholder="Children (If you have, how many?)..." style={{ width: "100%" }} onChange={(event) => setChildren(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
         
         {/* Physical Examination  */}
         <h2>Physical Examination </h2>
         <table>
+        <tbody>
         {/* Physical layer 1 */}
         <tr>
          <td><input type="text" placeholder="Height (m)..." onChange={(event) => setHeight(event.target.value)} /></td>
@@ -522,11 +535,13 @@ const MedicalRecords = () => {
          <td>Other:</td>
          <td><input type="text" placeholder="Other..." onChange={(event) => setPhysical_other(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
 
         {/* Diagnostics Examination  */}
         <h2>Diagnostic Results (Pls. include date of examination)</h2>
         <table>
+        <tbody>
         {/* Diagnostic layer 1 */}
         <tr>
          <td>Chest X-Ray:</td>
@@ -534,11 +549,13 @@ const MedicalRecords = () => {
          <td>Impression:</td>
          <td colSpan={2}><input type="text" placeholder="Impression..." onChange={(event) => setDiagnostics(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
 
         {/* Plan  */}
         <h2>Plan</h2>
         <table>
+        <tbody>
         {/* Plan layer 1 */}
         <tr>
          <td>Chest X-Ray:</td>
@@ -572,6 +589,7 @@ const MedicalRecords = () => {
          <td>Referred:</td>
          <td colSpan={2}><input type="text" placeholder="Referred..." style={{ width: "100%" }} onChange={(event) => setReferred(event.target.value)} /></td>
         </tr>
+        </tbody>
         </table><br/><br/>
 
         {/* Recommendation */}
