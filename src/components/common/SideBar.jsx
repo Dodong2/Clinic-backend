@@ -5,9 +5,10 @@ import PropTypes from "prop-types";
 /****** react icons ******/
 import { IoMenu, IoClose } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { CgProfile } from "react-icons/cg";
 import { BiSolidLogOut } from "react-icons/bi";
 import { LuBookText } from "react-icons/lu";
+import { PiStudent } from "react-icons/pi";
+import { GrUserManager } from "react-icons/gr";
 /****** assets ******/
 import clinic from '../../assets/images/LSPUlogo.png'
 
@@ -41,8 +42,9 @@ const SideBar = ({ onPageChange  }) => {
           {/* sidebar nav button pages */}
           <nav className={isOpen ? "" : "notxt"}>
           <button onClick={() => handlePageChange("Dashboard", "/")}>< LuLayoutDashboard/><span>Dashboard</span></button>
-          <button onClick={() => handlePageChange("Patients", "/patients")}><CgProfile/> <span>Patients</span></button>
-          <button onClick={() => handlePageChange("Logbook", "/logbook")}><LuBookText/> <span>Patients</span></button>
+          <button onClick={() => handlePageChange("Patients", "/patients")}><PiStudent/> <span>Students</span></button>
+          <button onClick={() => handlePageChange("Employee", "/employee")}><GrUserManager/> <span>Employer</span></button>
+          <button onClick={() => handlePageChange("Logbook", "/logbook")}><LuBookText/> <span>Logbook</span></button>
           <button className="logout"><BiSolidLogOut/> <span>Logout</span></button>
           </nav>
         </div>

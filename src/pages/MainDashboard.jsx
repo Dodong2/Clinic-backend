@@ -7,10 +7,12 @@
   import Dashboard from "../components/Dashboard"
   import Patients from "../components/Patients"
   import LogbookRecord from "../components/LogbookRecord"
+  import EmployeePatients from "../components/EmployeePatients"
 
   const GraphsPage = () => <Dashboard/>
   const PatientsPage = () => <Patients/>
   const LogbookRecordPage = () => <LogbookRecord/>
+  const EmployeePatientsPage = () => <EmployeePatients/>
 
   const MainDashboard = () => {
     const location = useLocation();
@@ -24,6 +26,8 @@
         setActivePage("Patients");
       } else if (location.pathname === "/logbook") {
         setActivePage("Logbook");
+      } else if (location.pathname === "/employee") {
+        setActivePage("Employee")
       }
     }, [location.pathname]);
 
@@ -42,6 +46,7 @@
         {activePage === "Dashboard" && <GraphsPage />}
         {activePage === "Patients" && <PatientsPage />}
         {activePage === "Logbook" && <LogbookRecordPage />}
+        {activePage === "Employee" && <EmployeePatientsPage />}
         </div>
       </>
     )

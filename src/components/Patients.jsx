@@ -13,7 +13,7 @@ import useModalhooks from "../hooks/Modalhooks";
 import UpdateMedicalRecords from "./student side/UpdateMedicalRecords";
 /****** firebase ******/
 import { db } from '../firebase-config'
-import {collection, getDocs, orderBy, query, doc, deleteDoc} from 'firebase/firestore'
+import {collection, getDocs, orderBy, query, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
 
 
 const Patients = () => {
@@ -38,16 +38,22 @@ const Patients = () => {
   } = useModalhooks()
 
 //get
-  useEffect(() => {
-    const getPatientLists = async () => {
-      const q = query(listsCollections, orderBy("createdAt", "desc"))
-      const data = await getDocs(q)
-      const patientLists = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      setLists(patientLists)
+useEffect(() => {
+  const unsubscribe = onSnapshot(
+    query(listsCollections, orderBy("createdAt", "desc")),
+    (snapshot) => {
+      const patientLists = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setLists(patientLists);
       setFilteredLists(patientLists);
     }
-    getPatientLists()
-  }, [])
+  );
+
+  // Cleanup listener on component unmount
+  return () => unsubscribe();
+}, []);
 
 //search
 const handleSearch = (event) => {
