@@ -376,6 +376,7 @@ body {
 .search-bar .icon {   
     margin-top: 10px;
     margin-left: 10px;
+    color: var(--color-black);
 }
 
 /* patient tables */
@@ -1604,6 +1605,7 @@ body {
 }
 
 
+
 .unique-table-layout .add-record-btn {
   padding: 8px 16px;
   background-color: white;
@@ -1612,6 +1614,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  transition: all .2s ease ;
+}
+
+.unique-table-layout .add-record-btn:active {
+  transform: scale(0.90);
 }
 
 .unique-table-layout .add-record-btn:hover {
@@ -1623,6 +1630,7 @@ body {
   background-color: white;
   border-radius: 5px;
   overflow-x: auto;
+  color: var(--color-black);
 }
 
 .unique-table-layout table {

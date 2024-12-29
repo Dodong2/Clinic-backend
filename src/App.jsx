@@ -28,6 +28,7 @@ function App() {
       <Routes>
 {/* admin dashboard page */}
         <Route path="/" element={<DashboardPage />} />
+        
         <Route path="/addlog" element={<AddLogbook />} />
         {/*<Route path="/patients" element={<Patients />} />*/}
 {/* Student patient page */}

@@ -21,7 +21,9 @@ const Patients = () => {
   const [lists, setLists] = useState([])
   const listsCollections = collection(db, "lists")
   const [selectPatient, setSelectPatient] = useState(null)
-  const [selectedPatientId, setSelectedPatientId] = useState(null);
+  const [selectedPatientId, setSelectedPatientId] = useState(null)
+  const [filteredLists, setFilteredLists] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
 //logics
   const {modal1,
@@ -36,15 +38,27 @@ const Patients = () => {
   } = useModalhooks()
 
 //get
-query
   useEffect(() => {
     const getPatientLists = async () => {
       const q = query(listsCollections, orderBy("createdAt", "desc"))
       const data = await getDocs(q)
-      setLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      const patientLists = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      setLists(patientLists)
+      setFilteredLists(patientLists);
     }
     getPatientLists()
   }, [])
+
+//search
+const handleSearch = (event) => {
+  const query = event.target.value.toLowerCase();
+  setSearchQuery(query);
+  setFilteredLists(
+    lists.filter((list) => 
+      `${list.given_name} ${list.middle_name} ${list.surname}`.toLowerCase().includes(query)
+    )
+  );
+};
 
 //update
   const handleUpdatePatients = (updatedList) => {
@@ -77,16 +91,16 @@ query
         <div className="patient-layer1">
           <div className="number-of-patients">
             <h3>Number of Patients</h3>
-            <p>0</p>
+            <p>{lists.length}</p>
           </div>
           <div className="gender-count">
             <div className="gender-count-male">
               <h3>Male</h3>
-              <p>0</p>
+              <p>{lists.filter(list => list.sex === "Male").length}</p>
             </div>
             <div className="gender-count-female">
               <h3>Female</h3>
-              <p>0</p>
+              <p>{lists.filter(list => list.sex === "Female").length}</p>
             </div>
           </div>
         </div><br/>
@@ -96,7 +110,8 @@ query
           <div className="patient-header">
           <div className="search-bar">
           <FaSearch className="icon"/>
-            <input type="text" placeholder="Search...."/>
+            <input type="text" placeholder="Search...." value={searchQuery}
+            onChange={handleSearch}/>
             </div>
             <div className="add-patient">
             <Link to='/medical_record'><button>Add student patient</button></Link>
@@ -112,23 +127,31 @@ query
             <th>Gender</th>
             <th>Age</th>
             <th>Medical History</th> 
-            <th>Allergies</th> 
+            <th>Status</th> 
             <th>Action</th> 
           </tr>
-          {lists && lists.map((list) => (
-            <tr key={list.id}>
-            <td>{list.given_name} {list.middle_name} {list.surname}</td>
-            <td>{list.sex}</td>
-            <td>{list.age}</td>
-            <td>{list.known_illness}</td>
-            <td>{list.allergy}</td>
-            <td>
-              <button onClick={() => setSelectPatient(list)}> <CgProfile/> </button>
-              <button onClick={handleModal1Open}> <FiEdit/> </button>
-              <button onClick={()=> {setSelectedPatientId(list.id); handleModal2Open()} }> <FiTrash/> </button>
-            </td>
-          </tr>
-          ))}
+          {filteredLists.length > 0 ? (
+            filteredLists.map((list) => (
+              <tr key={list.id}>
+                <td>{list.given_name} {list.middle_name} {list.surname}</td>
+                <td>{list.sex}</td>
+                <td>{list.age}</td>
+                <td>{list.known_illness}</td>
+                <td>{list.status}</td>
+                <td>
+                  <button onClick={() => setSelectPatient(list)}> <CgProfile/> </button>
+                  <button onClick={handleModal1Open}> <FiEdit/> </button>
+                  <button onClick={() => {setSelectedPatientId(list.id); handleModal2Open();}}> <FiTrash/> </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" style={{ textAlign: "center" }}>
+                No existing record...
+              </td>
+            </tr>
+          )}
           
         </table>
           </div>
