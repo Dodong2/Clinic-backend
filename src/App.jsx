@@ -35,7 +35,7 @@ function App() {
         <Route path="/medical_record" element={<Medical_records />} />
 {/* Student and Employee page */}
         <Route path="/medical_cert" element={<MedicalcertPage />} />
-        <Route path="/patient_record" element={<PatientrecordPage />} />
+        <Route path="/patient_record/:id" element={<PatientrecordPage />} />
         <Route path="/referral" element={<ReferralFormPage />} />
 {/* Employee page */}
         <Route path="/employee_cert" element={<Employee_medical_certPage />} />

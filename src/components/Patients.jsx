@@ -8,12 +8,11 @@ import { FiEdit, FiTrash } from "react-icons/fi";
 /****** component ******/
 import Modal1 from './common/Modal1'
 import Modal2 from "./common/Modal2";
-import Modal3 from "./common/Modal3";
 import useModalhooks from "../hooks/Modalhooks";
 import UpdateMedicalRecords from "./student side/UpdateMedicalRecords";
 /****** firebase ******/
 import { db } from '../firebase-config'
-import {collection, getDocs, orderBy, query, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
+import {collection, orderBy, query, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
 
 
 const Patients = () => {
@@ -28,13 +27,10 @@ const Patients = () => {
 //logics
   const {modal1,
     modal2,
-    modal3,
     handleModal1Open,
     handleModal1Close,
     handleModal2Open,
     handleModal2Close,
-    handleModal3Open,
-    handleModal3Close
   } = useModalhooks()
 
 //get
@@ -121,7 +117,6 @@ const handleSearch = (event) => {
             </div>
             <div className="add-patient">
             <Link to='/medical_record'><button>Add student patient</button></Link>
-            <button onClick={handleModal3Open}>Add employee patient</button>
             </div>
           </div><br/>
 
@@ -146,7 +141,7 @@ const handleSearch = (event) => {
                 <td>{list.status}</td>
                 <td>
                   <button onClick={() => setSelectPatient(list)}> <CgProfile/> </button>
-                  <button onClick={handleModal1Open}> <FiEdit/> </button>
+                  <button onClick={() => {setSelectedPatientId(list.id); handleModal1Open();}}> <FiEdit/> </button>
                   <button onClick={() => {setSelectedPatientId(list.id); handleModal2Open();}}> <FiTrash/> </button>
                 </td>
               </tr>
@@ -165,9 +160,8 @@ const handleSearch = (event) => {
       </div>
 
       {/* Modal */}
-      <Modal1 isOpen={modal1} onClose={handleModal1Close} />
+      <Modal1 isOpen={modal1} onClose={handleModal1Close} selectedPatientId={selectedPatientId} />
       <Modal2 isOpen={modal2} onClose={() => {setSelectedPatientId(null); handleModal2Close()}} onDelete={deletePatient}/>
-      <Modal3 isOpen={modal3} onClose={handleModal3Close}/>
 
       {selectPatient && (
         <UpdateMedicalRecords list={selectPatient} onClose={() => setSelectPatient(null)} onUpdate={handleUpdatePatients}/>

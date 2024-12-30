@@ -16,8 +16,15 @@ import { db } from '../firebase-config'
 import {collection, getDocs, orderBy, query, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
 
 const EmployeePatients = () => {
+//hooks
+  const [employees, setEmployee] = useState([]) 
+  const employeeCollections = collection(db, "employee")
+  const [filteredLists, setFilteredLists] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedPatientId, setSelectedPatientId] = useState(null)
 
-    //logics
+
+//logics
   const {modal1,
     modal2,
     modal3,
@@ -28,6 +35,51 @@ const EmployeePatients = () => {
     handleModal3Open,
     handleModal3Close
   } = useModalhooks()
+
+  //get
+useEffect(() => {
+  const unsubscribe = onSnapshot(
+    query(employeeCollections, orderBy("createdAt", "desc")),
+    (snapshot) => {
+      const patientLists = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setEmployee(patientLists);
+      setFilteredLists(patientLists);
+    }
+  );
+
+  // Cleanup listener on component unmount
+  return () => unsubscribe();
+}, []);
+
+//search
+const handleSearch = (event) => {
+  const query = event.target.value.toLowerCase();
+  setSearchQuery(query);
+  setFilteredLists(
+    employees.filter((employ) => 
+      `${employ.fullname}`.toLowerCase().includes(query)
+    )
+  );
+};
+
+//delete
+  const deletePatient = async() => {
+    try {
+      if(selectedPatientId) {
+      const patientDoc = doc(db, "employee", selectedPatientId)
+      await deleteDoc(patientDoc)
+      setEmployee((prevLists) =>  prevLists.filter((list) => list.id !== selectedPatientId))
+      setSelectedPatientId(null)
+      handleModal2Close()
+      }
+    } catch (error) {
+      console.error("Error deleting patient", error)
+    }
+  }
+
   return (
     <>
     <div className="patient">
@@ -35,16 +87,16 @@ const EmployeePatients = () => {
       <div className="patient-layer1">
         <div className="number-of-patients">
           <h3>Number of Patients</h3>
-          <p>0</p>
+          <p>{employees.length}</p>
         </div>
         <div className="gender-count">
           <div className="gender-count-male">
             <h3>Male</h3>
-            <p>0</p>
+            <p>{employees.filter(list => list.sex === "Male").length}</p>
           </div>
           <div className="gender-count-female">
             <h3>Female</h3>
-            <p>0</p>
+            <p>{employees.filter(list => list.sex === "Female").length}</p>
           </div>
         </div>
       </div><br/>
@@ -54,10 +106,10 @@ const EmployeePatients = () => {
         <div className="patient-header">
         <div className="search-bar">
         <FaSearch className="icon"/>
-          <input type="text" placeholder="Search...."/>
+          <input type="text" onChange={handleSearch} value={searchQuery} placeholder="Search...."/>
           </div>
           <div className="add-patient">
-          <Link to='/'><button>Add employee patient</button></Link>
+          <Link to='/employee_cert'><button>Add employee patient</button></Link>
           </div>
         </div><br/>
 
@@ -68,22 +120,34 @@ const EmployeePatients = () => {
           <th>Name</th>
           <th>Gender</th>
           <th>Age</th>
-          <th>Medical History</th> 
+          <th>Proposed Position</th> 
           <th>Status</th> 
           <th>Action</th> 
         </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+        {filteredLists.length > 0 ? (
+          filteredLists.map((employ) => (
+            <tr key={employ.id}>
+              <td>{employ.fullname}</td>
+              <td>{employ.sex}</td>
+              <td>{employ.age}</td>
+              <td>{employ.position}</td>
+              <td>{employ.status}</td>
               <td>
                 <button> <CgProfile/> </button>
-                <button> <FiEdit/> </button>
-                <button> <FiTrash/> </button>
+                <button> <CgProfile/> </button>
+                <button onClick={handleModal1Open}> <FiEdit/> </button>
+                <button onClick={() => {setSelectedPatientId(employ.id); handleModal2Open();}}> <FiTrash/> </button>
               </td>
             </tr>
+          ))
+        ) : (
+          <tr>
+              <td colSpan="6" style={{ textAlign: "center" }}>
+                No existing record...
+              </td>
+            </tr>
+        )}
+            
       </table>
         </div>
       </div>
@@ -91,7 +155,7 @@ const EmployeePatients = () => {
 
      {/* Modal */}
           <Modal1 isOpen={modal1} onClose={handleModal1Close} />
-          {/*<Modal2 isOpen={modal2} onClose={() => {setSelectedPatientId(null); handleModal2Close()}} onDelete={deletePatient}/>*/}
+          <Modal2 isOpen={modal2} onClose={() => {setSelectedPatientId(null); handleModal2Close()}} onDelete={deletePatient}/>
           <Modal3 isOpen={modal3} onClose={handleModal3Close}/>
     
           {/*{selectPatient && (

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { IoMdCloseCircle } from "react-icons/io";
 
-const Modal1 = ({ isOpen, onClose }) => {
+const Modal1 = ({ isOpen, onClose, selectedPatientId }) => {
   if (!isOpen) return null;
 
   return (
@@ -20,7 +20,7 @@ const Modal1 = ({ isOpen, onClose }) => {
       <button className="modal-close" onClick={onClose}> <IoMdCloseCircle/></button>
       {/* buttons */}
       <div className="modal-btn1">
-        <Link to='/patient_record'><button onClick={onClose}>Patient Record</button></Link>
+        <Link to={`/patient_record/${selectedPatientId}`}><button onClick={onClose}>Patient Record</button></Link>
         <Link to='/medical_cert'><button onClick={onClose}>Medical Certificate</button></Link>
         <Link to='/referral'><button onClick={onClose}>Referral Form</button></Link>
         </div>
@@ -32,6 +32,7 @@ const Modal1 = ({ isOpen, onClose }) => {
 Modal1.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  selectedPatientId: PropTypes.string,
 };
 
 export default Modal1;
