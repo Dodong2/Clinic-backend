@@ -35,7 +35,7 @@ const Employee_medical_cert = () => {
   const employCollections = collection(db, "employee")
   const navigate = useNavigate()
 
-//logis
+//logics
   const Addemploy = async (event) => {
     event.preventDefault()
     try {
@@ -53,7 +53,7 @@ const Employee_medical_cert = () => {
         sex: sex,
         status: status,
         position: position,
-        govern_phys,
+        govern_phys: govern_phys,
         appointee: appointee,
         liscense: liscense,
         height: height,

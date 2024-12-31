@@ -10,10 +10,10 @@ import Modal1 from './common/Modal1'
 import Modal2 from "./common/Modal2";
 import Modal3 from "./common/Modal3";
 import useModalhooks from "../hooks/Modalhooks";
-import UpdateMedicalRecords from "./student side/UpdateMedicalRecords";
+import UpdateEmployee from "./employee side/updateEmployee";
 /****** firebase ******/
 import { db } from '../firebase-config'
-import {collection, getDocs, orderBy, query, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
+import {collection, orderBy, query, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
 
 const EmployeePatients = () => {
 //hooks
@@ -32,7 +32,6 @@ const EmployeePatients = () => {
     handleModal1Close,
     handleModal2Open,
     handleModal2Close,
-    handleModal3Open,
     handleModal3Close
   } = useModalhooks()
 
@@ -64,6 +63,14 @@ const handleSearch = (event) => {
     )
   );
 };
+
+const handleUpdateEmployee = (updatedTodo) => {
+  setEmployee((prevEmploy) =>
+    prevEmploy.map((employ) =>
+    employ.id === updatedTodo.id ? updatedTodo : employ
+    )
+  )
+}
 
 //delete
   const deletePatient = async() => {
@@ -133,7 +140,7 @@ const handleSearch = (event) => {
               <td>{employ.position}</td>
               <td>{employ.status}</td>
               <td>
-                <button> <CgProfile/> </button>
+                <button onClick={() => setSelectedPatientId(employ)}> <CgProfile/> </button>
                 <button> <CgProfile/> </button>
                 <button onClick={handleModal1Open}> <FiEdit/> </button>
                 <button onClick={() => {setSelectedPatientId(employ.id); handleModal2Open();}}> <FiTrash/> </button>
@@ -158,9 +165,9 @@ const handleSearch = (event) => {
           <Modal2 isOpen={modal2} onClose={() => {setSelectedPatientId(null); handleModal2Close()}} onDelete={deletePatient}/>
           <Modal3 isOpen={modal3} onClose={handleModal3Close}/>
     
-          {/*{selectPatient && (
-            <UpdateMedicalRecords list={selectPatient} onClose={() => setSelectPatient(null)} onUpdate={handleUpdatePatients}/>
-          )}{/**/}
+          {selectedPatientId && (
+            <UpdateEmployee employ={selectedPatientId} onClose={() => setSelectedPatientId(null)} onUpdate={handleUpdateEmployee}/>
+          )}
     </>
   )
 }
