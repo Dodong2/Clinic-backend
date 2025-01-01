@@ -105,6 +105,7 @@ const MedicalRecords = () => {
   const [date,setDate] = useState("")
   const listsCollections = collection(db, "lists")
   // const navigate = useNavigate()
+  const [showFemaleSection, setShowFemaleSection] = useState(false);
 
   const {
     modal4,
@@ -113,6 +114,13 @@ const MedicalRecords = () => {
   } = useModalhooks()
 
 //logics
+
+const handleSexChange = (event) => {
+  const selectedSex = event.target.value;
+  setSex(selectedSex);
+  setShowFemaleSection(selectedSex === 'Female');
+};
+
   const addStudentPatients = async (e) => {
     e.preventDefault()
     try {
@@ -243,7 +251,7 @@ const MedicalRecords = () => {
             <td>Age:</td>
             <td><input type="text" placeholder="Age..." onChange={(event) => setAge(event.target.value)} /></td>
             <td>Sex:</td>
-            <td><select value={sex} onChange={(event) => setSex(event.target.value)} >
+            <td><select value={sex} onChange={handleSexChange} >
             <option value="" disabled>Sex...</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -266,21 +274,21 @@ const MedicalRecords = () => {
             <td>Course:</td>
             <td><select value={course} name="course" onChange={(event) => setCourse(event.target.value)} >
             <option value="" disabled>Course...</option>
-            <option value="null">Bachelor of Science in Psychology</option>
-            <option value="null">Bachelor of Science in Accountancy</option>
-            <option value="null">Bachelor of Science in Business Administration</option>
-            <option value="null">Bachelor of Science in Information Technology</option>
-            <option value="null">Bachelor of Science in Computer Science</option>
-            <option value="null">Bachelor of Science in Criminology</option>
-            <option value="null">Bachelor of Science in Fisheries</option>
-            <option value="null">Bachelor of Science in Agri- Fisheries Business Management</option>
-            <option value="null">Bachelor of Science in Fishery Education</option>
-            <option value="null">Bachelor of Science in Food Technology</option>
-            <option value="null">Bachelor of Science in Nutrition and Dietetics</option>
-            <option value="null">Bachelor of Science in Hotel and Restaurant Management</option>
-            <option value="null">Bachelor of Science in Tourism</option>
-            <option value="null">Bachelor of Secondary Education</option>
-            <option value="null">Bachelor of Elementary Education</option>
+            <option value="Bachelor of Science in Psychology">Bachelor of Science in Psychology</option>
+            <option value="Bachelor of Science in Accountancy">Bachelor of Science in Accountancy</option>
+            <option value="Bachelor of Science in Business Administration">Bachelor of Science in Business Administration</option>
+            <option value="Bachelor of Science in Information Technology">Bachelor of Science in Information Technology</option>
+            <option value="Bachelor of Science in Computer Science">Bachelor of Science in Computer Science</option>
+            <option value="Bachelor of Science in Criminology">Bachelor of Science in Criminology</option>
+            <option value="Bachelor of Science in Fisheries">Bachelor of Science in Fisheries</option>
+            <option value="Bachelor of Science in Agri- Fisheries Business Management">Bachelor of Science in Agri- Fisheries Business Management</option>
+            <option value="Bachelor of Science in Fishery Education">Bachelor of Science in Fishery Education</option>
+            <option value="Bachelor of Science in Food Technology">Bachelor of Science in Food Technology</option>
+            <option value="Bachelor of Science in Nutrition and Dietetics">Bachelor of Science in Nutrition and Dietetics</option>
+            <option value="Bachelor of Science in Hotel and Restaurant Management">Bachelor of Science in Hotel and Restaurant Management</option>
+            <option value="Bachelor of Science in Tourism">Bachelor of Science in Tourism</option>
+            <option value="Bachelor of Secondary Education">Bachelor of Secondary Education</option>
+            <option value="Bachelor of Elementary Education">Bachelor of Elementary Education</option>
           </select></td>
             <td>School Year Entered:</td>
             <td><input type="text" placeholder="Year..." onChange={(event) => setSchool_year(event.target.value)} /></td>
@@ -431,6 +439,8 @@ const MedicalRecords = () => {
         </table><br/><br/>
 
         {/* For Females (Fill out if applicable) */}
+        {showFemaleSection && (
+          <>
         <h2>For Females (Fill out if applicable)</h2>
         <h2>A. Menstrual period</h2>
         <table>
@@ -510,6 +520,8 @@ const MedicalRecords = () => {
         </tr>
         </tbody>
         </table><br/><br/>
+         </>
+      )}
         
         {/* Physical Examination  */}
         <h2>Physical Examination </h2>

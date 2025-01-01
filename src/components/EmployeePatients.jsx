@@ -22,6 +22,8 @@ const EmployeePatients = () => {
   const [filteredLists, setFilteredLists] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPatientId, setSelectedPatientId] = useState(null)
+  const [patientToUpdate, setPatientToUpdate] = useState(null);
+  const [patientToDelete, setPatientToDelete] = useState(null);
 
 
 //logics
@@ -73,19 +75,20 @@ const handleUpdateEmployee = (updatedTodo) => {
 }
 
 //delete
-  const deletePatient = async() => {
-    try {
-      if(selectedPatientId) {
-      const patientDoc = doc(db, "employee", selectedPatientId)
-      await deleteDoc(patientDoc)
-      setEmployee((prevLists) =>  prevLists.filter((list) => list.id !== selectedPatientId))
-      setSelectedPatientId(null)
-      handleModal2Close()
-      }
-    } catch (error) {
-      console.error("Error deleting patient", error)
+const deletePatient = async () => {
+  try {
+    if (patientToDelete) {
+      const patientDoc = doc(db, "employee", patientToDelete);
+      await deleteDoc(patientDoc);
+      setEmployee((prevLists) => prevLists.filter((list) => list.id !== patientToDelete));
+      setPatientToDelete(null);
+      handleModal2Close();
     }
+  } catch (error) {
+    console.error("Error deleting patient", error);
   }
+};
+
 
   return (
     <>
@@ -142,8 +145,10 @@ const handleUpdateEmployee = (updatedTodo) => {
               <td>
                 <button onClick={() => setSelectedPatientId(employ)}> <CgProfile/> </button>
                 <button> <CgProfile/> </button>
-                <button onClick={handleModal1Open}> <FiEdit/> </button>
-                <button onClick={() => {setSelectedPatientId(employ.id); handleModal2Open();}}> <FiTrash/> </button>
+                <button  onClick={handleModal1Open}> <FiEdit/> </button>
+                <button onClick={() => { setPatientToDelete(employ.id); handleModal2Open(); }}> 
+  <FiTrash /> 
+</button>
               </td>
             </tr>
           ))
@@ -162,11 +167,15 @@ const handleUpdateEmployee = (updatedTodo) => {
 
      {/* Modal */}
           <Modal1 isOpen={modal1} onClose={handleModal1Close} />
-          <Modal2 isOpen={modal2} onClose={() => {setSelectedPatientId(null); handleModal2Close()}} onDelete={deletePatient}/>
+          <Modal2 isOpen={modal2} onClose={() => {setPatientToDelete(null); handleModal2Close()}} onDelete={deletePatient}/>
           <Modal3 isOpen={modal3} onClose={handleModal3Close}/>
     
           {selectedPatientId && (
-            <UpdateEmployee employ={selectedPatientId} onClose={() => setSelectedPatientId(null)} onUpdate={handleUpdateEmployee}/>
+            <UpdateEmployee
+              employ={selectedPatientId} // Ipapasa ang buong employee object
+              onClose={() => setSelectedPatientId(null)} // Isasara kapag tapos na
+              onUpdate={handleUpdateEmployee} // Update handler
+            />
           )}
     </>
   )

@@ -1,11 +1,14 @@
 /****** react library ******/
 import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 /****** Icons ******/
 import { FaArrowLeftLong } from "react-icons/fa6";
 /****** database ******/
 import { db } from "../../firebase-config"
 import {collection, addDoc, serverTimestamp} from 'firebase/firestore'
+/****** components ******/
+import Modal7 from "../common/Modal7";
+import useModalhooks from "../../hooks/Modalhooks";
 
 const Employee_medical_cert = () => {
 //hooks  
@@ -33,7 +36,13 @@ const Employee_medical_cert = () => {
   const [fit, setFit] = useState('')
   const [unfit, setUnfit] = useState('')
   const employCollections = collection(db, "employee")
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+
+  const {
+    modal7,
+    handleModal7Open,
+    handleModal7Close
+  } = useModalhooks()
 
 //logics
   const Addemploy = async (event) => {
@@ -65,8 +74,7 @@ const Employee_medical_cert = () => {
         unfit: unfit,
         createdAt: serverTimestamp()
       })
-      alert("Task added successfully!");
-      navigate("/")
+      handleModal7Open()
     } catch(error) {
       console.error("Error adding task:", error);
         alert("Error adding task, please try again!");
@@ -232,6 +240,9 @@ const Employee_medical_cert = () => {
 
   </div>
   </div>
+
+  {/* Modal */}
+              <Modal7 isOpen={modal7} onClose={handleModal7Close} />
     </>
   )
 }

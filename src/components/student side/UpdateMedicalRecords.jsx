@@ -104,6 +104,7 @@ const [physician_name,setPhysician_name] = useState(list.physician_name)
 const [liscene_number,setLiscene_number] = useState(list.liscene_number)
 const [date,setDate] = useState(list.date)
 
+
 //logics 
     const handleUpdate = async (event) => {
         event.preventDefault();
@@ -658,7 +659,7 @@ UpdateMedicalRecords.propTypes = {
       surname: PropTypes.string.isRequired,
       given_name: PropTypes.string.isRequired,
       middle_name: PropTypes.string.isRequired,
-      age: PropTypes.number.isRequired,
+      age: PropTypes.number,
       sex: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       birth: PropTypes.string.isRequired,

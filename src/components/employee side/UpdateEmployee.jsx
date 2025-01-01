@@ -65,6 +65,7 @@ const handleUpdate = async (event) => {
     onUpdate({ ...employ, ...updateData })
     onClose()
     }
+    if (!employ) return null;
 
   return (
     <>
