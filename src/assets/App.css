@@ -1477,9 +1477,9 @@ body {
 /* Login Html */
 .logincontainer {
   width: 890px;
-  height: 670px;
+  height: 550px;
   background: white;
-  margin: 50px auto;
+  margin: 60px auto;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
   display: flex;
   border-radius: 10px;
@@ -1488,7 +1488,7 @@ body {
 
 .logincontainer .left {
   width: 41%;
-  background: url(image.png) no-repeat center center;
+  background: url(./images/gate.png) no-repeat center center;
   background-size: cover;
 }
 
@@ -1508,9 +1508,9 @@ body {
 }
 
 .formbox img {
-  width: 80px;
-  height: auto;
-  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .formbox h1 {
@@ -1527,6 +1527,7 @@ body {
 }
 
 .formbox input {
+  border: none;
   padding: 10px;
   padding-left: 25px;
   margin-bottom: 30px;
@@ -1537,8 +1538,7 @@ body {
   width: 388px;
   height: 53px;
   color: #999;
-
-  
+  outline: none;
 }
 
 .formbox .logo{
@@ -1550,9 +1550,24 @@ body {
 }
 
 
+
 .formbox input::placeholder {
   font-size: 18px;
   color: #999;
+}
+
+.pass-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pass-container .toggle-icons {
+  position: absolute;
+  top: 20%;
+  left: 85%;
+  font-size: 25px;
+  color: var(--color-black);
 }
 
 .loginsubmit {
@@ -1573,10 +1588,18 @@ body {
 }
 
 .formspace{
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center
+}
+
+.formspace p {
+  position: absolute;
+  top: 145px;
+  color: red;
+  font-size: 15px;
 }
 
 .logincenter {

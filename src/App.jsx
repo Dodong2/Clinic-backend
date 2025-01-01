@@ -8,6 +8,7 @@ function App() {
 
 //Pages
 //admin dashboard page
+  const Login = lazy(() => import('./components/Login.jsx'))
   const DashboardPage = lazy(() => import('./pages/MainDashboard.jsx'))
   const AddLogbook = lazy(() => import('../src/components/AddLogbook.jsx'))
 //Student patient page
@@ -27,7 +28,8 @@ function App() {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
 {/* admin dashboard page */}
-        <Route path="/" element={<DashboardPage />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         
         <Route path="/addlog" element={<AddLogbook />} />
         {/*<Route path="/patients" element={<Patients />} />*/}

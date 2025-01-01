@@ -93,7 +93,7 @@ const Employee_record = () => {
 
   return (
     <div className="patient-record">
-      <Link to="/">
+      <Link to="/dashboard">
         <button className="back-btn">
           <FaArrowLeftLong />
         </button>

@@ -77,7 +77,7 @@ const Employee_medical_cert = () => {
   return (
     <>
     <div className="employee-cert">
-    <Link to="/"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
+    <Link to="/dashboard"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
     <div className="employee-cert-container">
     
       <div className="form first">

@@ -16,7 +16,7 @@
 
   const MainDashboard = () => {
     const location = useLocation();
-    const [activePage, setActivePage] = useState("dashboard")
+    const [activePage, setActivePage] = useState("Dashboard")
 
     useEffect(() => {
       // Set active page based on the URL path

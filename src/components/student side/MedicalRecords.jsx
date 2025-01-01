@@ -221,7 +221,7 @@ const MedicalRecords = () => {
   return (
     <>
       <div className="medical-records">
-      <Link to="/"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
+      <Link to="/dashboard"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
         <div className="container">
 
         {/* Patient Information */}

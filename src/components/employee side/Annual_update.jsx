@@ -5,7 +5,7 @@ const Annual_update = () => {
   return (
     <>
     <div className="annual">
-    <Link to="/"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
+    <Link to="/dashboard"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
     
     <div className="annual-container">
     <header>Health Examination Record</header>

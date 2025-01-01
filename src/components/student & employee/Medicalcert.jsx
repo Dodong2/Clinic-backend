@@ -6,7 +6,7 @@ const Medicalcert = () => {
   return (
     <>
     <div className="medical-cert">
-    <Link to="/"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
+    <Link to="/dashboard"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
     <div className="medical-cert-container">
     <header>Medical Certificate</header>
   

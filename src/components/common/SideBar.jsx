@@ -11,15 +11,24 @@ import { PiStudent } from "react-icons/pi";
 import { GrUserManager } from "react-icons/gr";
 /****** assets ******/
 import clinic from '../../assets/images/LSPUlogo.png'
-
+/****** components ******/
+import Modal6 from "./Modal6";
+import useModalhooks from "../../hooks/Modalhooks";
 
 const SideBar = ({ onPageChange  }) => {
+//
   const [isOpen, setIsOpen] = useState(false);
   // const navigate = useNavigate();
 
+  const {
+    modal6,
+    handleModal6Open,
+    handleModal6Close,
+  } = useModalhooks();
+
   const handlePageChange = (page) => {
-    onPageChange(page); // I-trigger ang parent function para magbago ang page
-    setIsOpen(false);   // Isara ang sidebar
+    onPageChange(page); 
+    setIsOpen(false);  
     // navigate(route);
   };
 
@@ -45,10 +54,14 @@ const SideBar = ({ onPageChange  }) => {
           <button onClick={() => handlePageChange("Patients", "/patients")}><PiStudent/> <span>Students</span></button>
           <button onClick={() => handlePageChange("Employee", "/employee")}><GrUserManager/> <span>Employer</span></button>
           <button onClick={() => handlePageChange("Logbook", "/logbook")}><LuBookText/> <span>Logbook</span></button>
-          <button className="logout"><BiSolidLogOut/> <span>Logout</span></button>
+          <button className="logout" onClick={handleModal6Open}><BiSolidLogOut/> <span>Logout</span></button>
           </nav>
         </div>
       </aside>
+
+      {/* Modal6 */}
+      <Modal6 isOpen={modal6} onClose={handleModal6Close} />
+
     </>
   );
 };

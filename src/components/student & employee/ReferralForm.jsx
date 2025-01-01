@@ -14,7 +14,7 @@ const ReferralForm = () => {
   return (
     <>
     <div className="referral">
-    <Link to="/"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
+    <Link to="/dashboard"><button className="back-btn"> <FaArrowLeftLong/> </button></Link><br/>
     <div className="referral-container">
     <header>Referral Form</header>
 
