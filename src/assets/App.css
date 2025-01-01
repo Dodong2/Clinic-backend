@@ -919,6 +919,32 @@ body {
     display: flex;
     justify-content: flex-end;
   }
+
+.print-container {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.print-btn {
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color:#fbcf45;
+    color: var(--NavText-color);
+    font-family: poppins-bold;
+  }
+
+.print-btn:hover {
+    transition: all ease .2s;
+    background-color:var(--color-yellow);
+  }
+
+  .print-btn:active {
+    transform: scale(0.90);
+  }
+
+
   
   /*******************************
    * Form Controls
@@ -1212,6 +1238,19 @@ body {
     background-color: #FCDD62;
     color: #215064;
   }
+
+  .submit:hover,
+  .cancel:hover {
+    transition: all ease .3s;
+    background-color: #FF9800;
+  }
+  
+
+  .submit:active,
+  .cancel:active {
+    transform: scale(0.90);
+  }
+  
   
   /* General label styles */
   label {
@@ -1693,7 +1732,6 @@ body {
   margin-top: 10px;
   margin-left: 80px;
 }
-
 
 
 

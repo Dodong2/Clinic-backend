@@ -4,8 +4,19 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 
 const ReferralForm = () => {
+//hooks
   const [selectedCourse, setSelectedCourse] = useState("default");
+  const [hideButton, setHideButton] = useState(false);
 
+//logics
+  const handlePrint = () => {
+    setHideButton(true); // Hide the button
+    setTimeout(() => {
+      window.print();
+      setHideButton(false); // Optionally show the button again after print
+    }, 0); // Allow time for print dialog to open
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault(); // Para hindi mag-refresh ang page
     console.log("Selected Course:", selectedCourse);
@@ -98,15 +109,18 @@ const ReferralForm = () => {
             <label>PHYSICIAN:</label>
           </div>
     
-    <div className="form-footer">
-        <button type="button" className="cancel">Cancel</button>
-        <button type="submit" className="submit">Submit</button>
-      </div>
-
+          <div className="print-container">
+          {!hideButton && (
+            <button onClick={handlePrint} className="print-btn">
+              Print Page
+            </button>
+          )}
+          </div>
         </div>
         </div>
         </form>
         </div>
+        
         </div>
     </>
   )

@@ -18,7 +18,7 @@ const Modal5 = ({ isOpen, onClose }) => {
       </div><br/>
       {/* buttons */}
       <div className="modal-btn4">
-        <Link to="/"><button onClick={onClose}>Done</button></Link>
+        <Link to="/dashboard"><button onClick={onClose}>Done</button></Link>
         </div>
       </div>
     </div>

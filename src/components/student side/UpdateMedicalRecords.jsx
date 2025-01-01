@@ -242,7 +242,15 @@ const [date,setDate] = useState(list.date)
           <option value="Female">Female</option>
         </select></td>
           <td>Status:</td>
-          <td><input type="text" placeholder="Status..." value={status} onChange={(event) => setStatus(event.target.value)} /></td>
+          <td>
+          <select value={status} onChange={(event) => setStatus(event.target.value)} required>
+          <option value="" disabled>status...</option>
+          <option value="Single">Single</option>
+          <option value="Married">Married</option>
+          <option value="Devorced">Devorced</option>
+          <option value="Widowed">Widowed</option>
+        </select>
+          </td>
         </tr>
         {/* Patient layer 3 */}
         <tr>

@@ -7,6 +7,7 @@ import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
 const Patient_record = () => {
+//hooks
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,6 +19,16 @@ const Patient_record = () => {
   });
   const [loading, setLoading] = useState(false); // For showing loading feedback
   const [error, setError] = useState(""); // For error handling
+  const [hideButton, setHideButton] = useState(false);
+
+  //logics
+    const handlePrint = () => {
+      setHideButton(true); // Hide the button
+      setTimeout(() => {
+        window.print();
+        setHideButton(false); // Optionally show the button again after print
+      }, 0); // Allow time for print dialog to open
+    };
 
   useEffect(() => {
     const fetchPatientRecord = async () => {
@@ -166,6 +177,7 @@ const Patient_record = () => {
                 ></textarea>
               </div>
             </div>
+            {!hideButton && (
             <div className="form-footer">
               <button
                 type="button"
@@ -177,10 +189,16 @@ const Patient_record = () => {
               <button type="submit" className="submit" disabled={loading}>
                 {loading ? "Saving..." : id ? "Update" : "Submit"}
               </button>
+
+              <button onClick={handlePrint} className="submit">
+              Print Page
+            </button>
             </div>
+          )}
           </div>
         </form>
       </div>
+      
     </div>
   );
 };
