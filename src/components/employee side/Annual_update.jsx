@@ -296,7 +296,7 @@ const Annual_update = () => {
     </div>
     
     <div className="form-footer">
-        <button type="button" className="cancel">Cancel</button>
+       <Link to="/dashboard"> <button type="button" className="cancel">Cancel</button></Link>
         <button type="submit" className="submit">Submit</button>
       </div>
 

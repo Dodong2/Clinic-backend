@@ -5,6 +5,8 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 /****** firebase or API integration ******/
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import Modal9 from "../common/Modal9";
+import useModalhooks from "../../hooks/Modalhooks";
 
 const Patient_record = () => {
 //hooks
@@ -20,6 +22,12 @@ const Patient_record = () => {
   const [loading, setLoading] = useState(false); // For showing loading feedback
   const [error, setError] = useState(""); // For error handling
   const [hideButton, setHideButton] = useState(false);
+
+  const {
+    modal9,
+    handleModal9Open,
+    handleModal9Close
+  } = useModalhooks()
 
   //logics
     const handlePrint = () => {
@@ -80,7 +88,7 @@ const Patient_record = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           await updateDoc(docRef, updateData);
-          alert("Record updated successfully!");
+          handleModal9Open()
         } else {
           // If the document doesn't exist, inform the user
           // alert("No such document to update, creating a new one.");
@@ -93,7 +101,6 @@ const Patient_record = () => {
         alert("New record created successfully!");
       }
 
-      navigate("/"); // Redirect to the homepage or another page after success
     } catch (error) {
       console.error("Error saving record:", error);
       setError("Failed to save the record. Please try again.");
@@ -103,6 +110,7 @@ const Patient_record = () => {
   };
 
   return (
+    <>
     <div className="patient-record">
       <Link to="/dashboard">
         <button className="back-btn">
@@ -182,7 +190,7 @@ const Patient_record = () => {
               <button
                 type="button"
                 className="cancel"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/dashboard")}
               >
                 Cancel
               </button>
@@ -198,8 +206,10 @@ const Patient_record = () => {
           </div>
         </form>
       </div>
-      
     </div>
+    {/* Modal */}
+                  <Modal9 isOpen={modal9} onClose={handleModal9Close} />
+    </>
   );
 };
 

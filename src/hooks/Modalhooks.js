@@ -10,6 +10,7 @@ const useModalhooks = () => {
   const [modal6, setModal6] = useState(false);
   const [modal7, setModal7] = useState(false);
   const [modal8, setModal8] = useState(false);
+  const [modal9, setModal9] = useState(false);
 
   const handleModalOpen = (setModal) => {
     setModal(true);
@@ -30,6 +31,7 @@ const useModalhooks = () => {
     modal6,
     modal7,
     modal8,
+    modal9,
     handleModal1Open: () => handleModalOpen(setModal1),
     handleModal1Close: () => handleModalClose(setModal1),
     handleModal2Open: () => handleModalOpen(setModal2),
@@ -44,9 +46,11 @@ const useModalhooks = () => {
     handleModal6Close: () => handleModalClose(setModal6),
     handleModal7Open: () => handleModalOpen(setModal7),
     handleModal7Close: () => handleModalClose(setModal7),
-
     handleModal8Open: () => handleModalOpen(setModal8),
     handleModal8Close: () => handleModalClose(setModal8),
+
+    handleModal9Open: () => handleModalOpen(setModal9),
+    handleModal9Close: () => handleModalClose(setModal9),
   };
 };
 
