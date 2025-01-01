@@ -41,7 +41,7 @@ function App() {
         <Route path="/referral" element={<ReferralFormPage />} />
 {/* Employee page */}
         <Route path="/employee_cert" element={<Employee_medical_certPage />} />
-        <Route path="/annual" element={<Annual_updatePage />} />
+        <Route path="/annual/:id" element={<Annual_updatePage />} />
         {/* <Route path="/" element={<User/>}/> */}
       </Routes>
     </Suspense>

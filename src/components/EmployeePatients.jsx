@@ -144,7 +144,7 @@ const deletePatient = async () => {
               <td>{employ.status}</td>
               <td>
                 <button onClick={() => setSelectedPatientId(employ)}> <CgProfile/> </button>
-                <Link to='/annual'> <button> <MdOutlineCalendarMonth/> </button> </Link>
+                <Link to={`/annual/${employ.id}`}> <button> <MdOutlineCalendarMonth/> </button> </Link>
                 <button  onClick={handleModal1Open}> <FiEdit/> </button>
                 <button onClick={() => { setPatientToDelete(employ.id); handleModal2Open(); }}> 
   <FiTrash /> 
