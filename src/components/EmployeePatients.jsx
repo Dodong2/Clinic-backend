@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { MdOutlineCalendarMonth } from "react-icons/md";
 /****** component ******/
 import Modal1 from './common/Modal1'
 import Modal2 from "./common/Modal2";
@@ -22,7 +23,6 @@ const EmployeePatients = () => {
   const [filteredLists, setFilteredLists] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPatientId, setSelectedPatientId] = useState(null)
-  const [patientToUpdate, setPatientToUpdate] = useState(null);
   const [patientToDelete, setPatientToDelete] = useState(null);
 
 
@@ -144,7 +144,7 @@ const deletePatient = async () => {
               <td>{employ.status}</td>
               <td>
                 <button onClick={() => setSelectedPatientId(employ)}> <CgProfile/> </button>
-                <button> <CgProfile/> </button>
+                <Link to='/annual'> <button> <MdOutlineCalendarMonth/> </button> </Link>
                 <button  onClick={handleModal1Open}> <FiEdit/> </button>
                 <button onClick={() => { setPatientToDelete(employ.id); handleModal2Open(); }}> 
   <FiTrash /> 

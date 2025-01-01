@@ -1,7 +1,7 @@
 /****** graphs ******/
 import GenderGraph from './graphs/GenderGraph'
 import AgeGraph from "./graphs/AgeGraph"
-import AllergiesGraph from "./graphs/AllergiesGraph"
+import PatientsPerDayGraph from './graphs/PatientsPerDayGraph'
 import BloodGraph from "./graphs/BloodGraph"
 
 const Dashboard = () => {
@@ -16,7 +16,7 @@ const Dashboard = () => {
     {/* layer 2 */}
     <div className="graph-layer2">
       <BloodGraph/>
-      <AllergiesGraph/>
+      <PatientsPerDayGraph/>
     </div>
     </div>
     </>
